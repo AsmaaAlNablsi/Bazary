@@ -1,0 +1,123 @@
+@font-face {
+    font-family: CairoRegular;
+    src: url(../../resources/js/assets/fonts/Cairo-Regular.ttf);
+}
+
+@font-face {
+    font-family: CairoBold;
+    src: url(../../resources/js/assets/fonts/Cairo-Bold.ttf);
+}
+
+body {
+    font-family: CairoRegular;
+}
+
+.font-weight-bold {
+    font-family: CairoBold;
+}
+
+.v-main,
+:root {
+    --v-layout-top: 80px !important;
+    --default-border-radius: 18px;
+}
+
+.main-div {
+    height: calc(100vh - 6.5rem + 3px) !important;
+    overflow-y: auto !important;
+    padding-bottom: 3px !important;
+}
+
+.clickable {
+    cursor: pointer !important;
+}
+
+.layout-card {
+    border-radius: var(--default-border-radius) !important;
+    min-height: 100% !important;
+}
+
+a{
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+b {
+    font-weight: inherit !important;
+}
+
+.light-gray {
+    color: #f4f6fa !important;
+}
+
+.v-btn {
+    border-radius: 28px !important;
+}
+
+img {
+    width: 20px;
+}
+
+.mdi-checkbox-marked {
+    color: #6b5dd1 !important;
+}
+
+.colored-btn {
+    background-image: linear-gradient(
+        to right,
+        #6b5dd1 0%,
+        #786ec0 51%,
+        #f7bafc 100%
+    ) !important;
+    color: #fff !important;
+    display: flex !important;
+}
+
+.green-btn {
+    background-color: #55e0b2 !important;;
+}
+
+.step-title-ar {
+    width: 20rem !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-bottom-left-radius: 2rem !important;
+    border-top-left-radius: 2rem !important;
+}
+
+.step-title-en {
+    width: 20rem !important;
+    border-top-right-radius: 2rem !important;
+    border-bottom-right-radius: 2rem !important;
+    border-bottom-left-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+}
+
+.side-stripe {
+    font-size: 0.94rem;
+    margin: 0 -2.3rem;
+    padding: .5rem 2.6rem !important;
+    color: #ffce6f !important;
+    font-weight: 700;
+    background-color: #fef4db !important;
+}
+
+.v-breadcrumbs-item--link {
+    text-decoration: none !important;
+}
+
+.v-breadcrumbs {
+    font-size: 0.8rem !important;
+    font-weight: 500;
+    line-height: 1.1rem;
+    letter-spacing: 0.00685em !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+
+.leaflet-control-attribution a,.leaflet-control-attribution span {
+    display: none !important;
+}
+
+

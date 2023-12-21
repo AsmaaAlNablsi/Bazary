@@ -1,0 +1,101 @@
+.colored-btn-cancel {
+    background-color: #acbfd6 !important;
+    color: #fff !important;
+    margin-right: 5px !important;
+    margin-left: 5px !important;
+    display: flex;
+}
+
+.crud-actions-container {
+    width: 100%;
+    display: flex;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.crud-action-btn {
+    width: 20px;
+    height: 30px;
+    margin: 0 3px;
+}
+
+.crud-actions-container > .crud-action-btn img {
+    width: 16px;
+    height: 16px;
+}
+
+.crud-actions-container.vertical-align .crud-action-btn img:not([alt="delete"]) {
+    vertical-align: text-bottom !important;
+}
+
+.crud-icon {
+    width: 30% !important;
+    padding-right: 10px !important;
+}
+
+.delete-icon {
+    width: 90% !important;
+    padding-right: 10px !important;
+}
+
+.confirmation-btn.table-btn {
+    padding: 3px 0 !important;
+    height: auto;
+    min-width: 3.55rem !important;
+}
+
+.dt__pagination__info {
+    display: none !important;
+}
+
+.dt-shadow-sm {
+    box-shadow: none !important;
+}
+
+.dt-shadow-inner {
+    --tw-shadow: none !important;
+    --tw-shadow-colored: none !important;
+    box-shadow: none !important;
+}
+
+.dt__table__thead__th {
+    background-color: #f4f6fa !important;
+    text-align: center !important;
+    color: #6b5dd1 !important;
+    font-weight: bold !important;
+}
+
+.dt__pagination__link.dt-bg-gray-200 {
+    background-color: #6b5dd1 !important;
+    color: white;
+    border-radius: 10px !important;
+    font-size: 10px;
+    display: inline;
+    font-weight: bold;
+    background-size: 5px !important;
+}
+
+.dt__pagination__link {
+    text-decoration: none;
+}
+
+.selected_row {
+    background-color: #eae8ff !important;
+}
+
+.dt__table__tbody_td {
+    text-align: center !important;
+    font-size: small !important;
+    color: #464646 !important;
+    padding: 5px !important;
+}
+
+.confirmation-btn {
+    border-radius: 10px !important;
+    width: 4px !important;
+    font-weight: bold !important;
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+    font-size: smaller !important;
+    color: white !important;
+}

@@ -1,0 +1,24 @@
+.login-row{
+    margin: -15px !important;
+}
+
+.login-image{
+    padding: 0 !important;
+}
+
+.login-image img{
+    width: 100% !important;
+    height: 68vh !important;
+    margin-left: 60%;
+    margin-top: 25%;
+    border-radius: 20px;
+}
+
+.login-logo{
+    margin-top:15%;
+    width: 25% !important;
+}
+
+.login-header{
+    color: #6b5dd1 !important;
+}

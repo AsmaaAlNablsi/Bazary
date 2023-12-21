@@ -1,0 +1,69 @@
+version: 3.0.0
+
+name: laravel-vue
+networks:
+    laravelvue:
+        name: laravelvue
+
+services:
+    laravel:
+        image: laravelsail/php82-composer
+        container_name: laravelvue
+        working_dir: /src
+        entrypoint: bash ./docker/Laravel/start.sh
+        build:
+            context: ./Laravel
+        ports:
+            - "8000:8000"
+        volumes:
+            - ../:/src
+        depends_on:
+            database:
+                condition: service_healthy
+        networks:
+            - laravelvue
+
+    database:
+        image: mysql:8.0.31
+        container_name: laravelvue-database
+        ports:
+            - "3306:3306"
+            # NOTE: use of "mysql_native_password" is not recommended: https://dev.mysql.com/doc/refman/8.0/en/upgrading-from-previous-series.html#upgrade-caching-sha2-password
+            # (this is just an example, not intended to be a production configuration)
+        command: --default-authentication-plugin=mysql_native_password
+        environment:
+            MYSQL_ROOT_PASSWORD: 12345
+        volumes:
+            - ./Database/data/:/var/lib/mysql
+        networks:
+            - laravelvue
+        healthcheck:
+            test: mysqladmin ping -h 127.0.0.1 -u root --password=$$MYSQL_ROOT_PASSWORD
+            start_period: 5s
+            interval: 5s
+            timeout: 5s
+            retries: 55
+
+    phpmyadmin:
+        image: phpmyadmin:5.2.0-apache
+        container_name: laravelvue-phpmyadmin
+        ports:
+            - "80:80"
+        environment:
+            PMA_HOST: database
+        networks:
+            - laravelvue
+
+    node:
+        image: node:16
+        build:
+            context: ./Node
+        container_name: laravelvue-node
+        stdin_open: true
+        tty: true
+        working_dir: /src
+        volumes:
+            - ../:/src
+        ports:
+            - "5173:5173"
+

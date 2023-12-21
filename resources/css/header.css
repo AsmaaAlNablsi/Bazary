@@ -1,0 +1,24 @@
+.header-nav {
+    height: var(--v-layout-top) !important;
+}
+
+.header-nav .v-toolbar__content {
+    height: 100% !important;
+}
+
+.header-logo {
+    width: 68px !important;
+}
+
+.header-btn-container {
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.header-btn-container img {
+    width: 38px;
+}
+
+.header-btn-container:hover {
+    transform: scale(1.05);
+}

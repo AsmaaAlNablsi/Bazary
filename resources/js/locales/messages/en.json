@@ -1,0 +1,237 @@
+{
+    "header": {
+        "logout": "Logout"
+    },
+    "locale": {
+        "en": "English",
+        "ar": "Arabic",
+        "lang": "en"
+    },
+    "navigation": {
+        "home": "Home",
+        "dashboard": "Dashboard",
+        "users_management": "Users Management",
+        "reports": "Reports",
+        "subscription_requests": "Subscription Requests",
+        "owners_management": "Owners Management",
+        "users_roles_management": "Users and Roles Management",
+        "settings": "Settings",
+        "subscription_types": "Subscription Types",
+        "general_codes": "Indexes",
+        "real-estate-types":"Real Estate Types",
+        "addresses": "Addresses",
+        "roles_management": "Roles Management",
+        "real_estates_management": "Real Estates Management",
+        "real_estates_map": "Real Estates Positions"
+    },
+    "users": {
+        "users": "Users",
+        "details": "User details",
+        "edit": "Edit user",
+        "add": "Add a new user",
+        "first_name": "First name",
+        "last_name": "Last name",
+        "email": "Email",
+        "password": "Password",
+        "password_confirmation": "Password confirmation",
+        "please_select_roles": "Please select roles",
+        "is_active": "Active"
+    },
+    "owners": {
+        "owners": "Owners",
+        "details": "Owners details",
+        "edit": "Edit owner",
+        "add": "Add a new owner",
+        "full_name": "Full name",
+        "number_of_estates": "Number of owner's real estates",
+        "real_estates": "Owner's real estates",
+        "personal_data": "Personal Informations",
+        "estate_data": "Estate Informations",
+        "owner_data":"Owner Informations",
+        "communication_data":"Communication and Contacnt Informations",
+        "father_name":"Father's name",
+        "identity":"Identity type",
+        "identity_no":"Identity number",
+        "mobile":"Mobile",
+        "phone":"Phone",
+        "subscription_status": "Owner subscription status",
+        "estate_and_subscription_data":"Real Estate and Subscription Informations",
+        "":"",
+        "estates": {
+            "estate_no": "Estate number",
+            "governorate": "governorate",
+            "city": "city",
+            "region": "region",
+            "street": "street",
+            "location": "location",
+            "estate_type": "Estate type",
+            "address": "Estate address",
+            "status": "Estate status",
+            "longitude": "Longitude",
+            "latitude": "Latitude"
+        },
+        "subscription": {
+            "toll_file_type": "Payment receipt file type",
+            "toll_file": "Payment receipt file"
+        },
+        "is_active": {
+            "1": "Activated",
+            "0": "Not activated"
+        }
+    },
+    "subscription_types": {
+        "subscription_types": "Subscription Types",
+        "subscription_type": "Subscription type",
+        "details": "Subscription type details",
+        "edit": "Edit Subscription type",
+        "add": "Add a new subscription type",
+        "device_count": "Number of devices",
+        "amount": "The toll",
+        "period_in_month": "Period in month",
+        "notes_en": "English notes",
+        "notes_ar": "Arabic notes"
+    },
+    "general_codes": {
+        "general_codes": "Indexes",
+        "details": "Index detail",
+        "edit": "Edit index",
+        "add": "Add a new index",
+        "please_select_index": "Please select an index"
+    },
+    "subscriptions": {
+        "subscriptions": "Subscriptions Requests",
+        "details": "Subscription request details ",
+        "subscription_type": "Subscription Type",
+        "real_estate": "Real Estate Type",
+        "rejection_reason": "Rejection Reason of subscription",
+        "date": "Subscription date",
+        "pay_date": "Payment date",
+        "from_date": "Start subscription date",
+        "to_date": "End subscription date",
+        "state": "State",
+        "owner": "Owner name",
+        "created_by": "Added by",
+        "add_payment_details": "Add payment details",
+        "bank_name": "Bank name",
+        "payment_date": "Payment date",
+        "receipt_no": "Receipt number",
+        "account": "Account number",
+        "real_estate_address": "Real Estate Address",
+        "real_estate_number": "Real Estate Number",
+        "please_select_bank": "Please select a bank",
+        "please_select_rejection_reason": "Please select the rejection reason",
+        "define_about_accept_subscription": "The actual subscription date will start when the devices are configured and identified ",
+        "paid_invoices": "Paid invoices",
+        "value": "paid amount"
+    },
+    "state": {
+        "pending": "Pending",
+        "conditional": "Conditional",
+        "paid": "Paid",
+        "rejected": "Rejected"
+    },
+    "real_estates": {
+        "real_estates": "Real Estates",
+        "real_estate": "Real Estate",
+        "real_estates_map": "Real Estates Positions",
+        "add": "Add a new real estate",
+        "edit": "Edit real estate",
+        "details": "Real Estate Details",
+        "estate_no": "Estate Number",
+        "address": "Estate Address",
+        "ownerName": "Owner Name",
+        "estate_rooms": "Real Estate Rooms",
+        "estate_type": "Real Estate Type",
+        "street": "Street",
+        "subscription_status": "Subscription Status",
+        "subscription_to_date": "Subscription End Date",
+        "subscription_start_date": "Subscription Start Date",
+        "rooms": {
+            "room_type": "Room Type",
+            "room_name": "Room Name",
+            "devices_count": "Devices count",
+            "add": "Room add",
+            "please_select_room_type": "Please Select Room Type",
+            "edit": "Room edit"
+        }
+    },
+
+    "rooms": {
+        "details": "Room Details",
+        "room_devices": "Room Devices",
+        "devices": {
+            "number": "Device Number",
+            "brand": "Device Brand",
+            "type": "Device Type",
+            "add": "Device add",
+            "please_select_device_type": "Please select device type",
+            "please_select_device_brand": "Please select device brand",
+            "edit": "Device edit",
+            "is_active": "Device Activate",
+            "status": "Device Status",
+            "1": "Activate",
+            "0": "Disable"
+        }
+    },
+    "roles": {
+        "roles": "Roles",
+        "details": "Role details",
+        "edit": "Edit role",
+        "add": "Add a new role",
+        "please_select_permissions": "Please select permissions",
+        "roles_selected": "Roles selected"
+    },
+    "permissions": {
+        "permissions": "Permissions",
+        "permissions_selected": "Permissions selected"
+    },
+    "validation": {
+        "required" : "Required field",
+        "email" : "The field must be a valid email",
+        "password": "The password must be 8 mixed chars at least",
+        "phone": "The phone number must be 10 numbers starting with 0",
+        "mobile": "The mobile number must be 10 numbers starting with 09"
+    },
+    "is_active": {
+        "is_active": "Display on application",
+        "1": "Yes",
+        "0": "No"
+    },
+    "addresses": {
+        "addresses": "Addresses",
+        "details": "Details",
+        "edit": "Edit",
+        "add": "Add"
+    },
+    "login" : "Login",
+    "save" : "Save",
+    "actions" : "Actions",
+    "next": "Next",
+    "add": "Add",
+    "back": "Back",
+    "left" : "left",
+    "right" : "right",
+    "edit" : "Edit",
+    "name": "Name",
+    "description": "Description",
+    "name_en": "English name",
+    "name_ar": "Arabic name",
+    "description_en": "English description",
+    "description_ar": "Arabic description",
+    "amount": "Subscription fee",
+    "please_select": "Please Select",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "are_you_sure": "Are you sure?",
+    "code": "Code",
+    "parent_id": "Parent",
+    "level": "Level",
+    "accept": "Accept",
+    "reject": "Reject",
+    "pay": "Pay",
+    "define_about_confirm_delete": "Note that it can't be reversed later",
+    "Passport":  "Passport",
+    "PersonalID": "Personal ID",
+    "unauthorized": "You do not have permission for that",
+    "select": "Select"
+}

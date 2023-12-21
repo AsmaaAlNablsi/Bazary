@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="25.266" height="21.791" viewBox="0 0 25.266 21.791">
+  <g id="ic_Customer_management" transform="translate(0 -33.042)">
+    <ellipse id="Ellipse_56" data-name="Ellipse 56" cx="4.34" cy="4.03" rx="4.34" ry="4.03" transform="translate(8.293 33.042)" fill="#acbfd6"/>
+    <circle id="Ellipse_57" data-name="Ellipse 57" cx="2.48" cy="2.48" r="2.48" transform="translate(18.833 36.141)" fill="#acbfd6"/>
+    <circle id="Ellipse_58" data-name="Ellipse 58" cx="2.48" cy="2.48" r="2.48" transform="translate(1.474 36.141)" fill="#acbfd6"/>
+    <path id="Path_126" data-name="Path 126" d="M6.622,241.293c-1.068-.875-2.036-.759-3.271-.759A3.345,3.345,0,0,0,0,243.864v5.389A1.45,1.45,0,0,0,1.451,250.7c3.456,0,3.039.063,3.039-.149C4.491,246.731,4.038,243.93,6.622,241.293Z" transform="translate(0 -197.482)" fill="#acbfd6"/>
+    <path id="Path_127" data-name="Path 127" d="M128.062,239.908c-2.158-.18-4.033,0-5.651,1.337-2.707,2.168-2.186,5.088-2.186,8.659a1.731,1.731,0,0,0,1.728,1.728c10.416,0,10.831.336,11.449-1.032.2-.463.147-.316.147-4.741A5.983,5.983,0,0,0,128.062,239.908Zm8.107-.02c-1.242,0-2.2-.115-3.271.759,2.564,2.618,2.131,5.228,2.131,9.257,0,.213-.346.149,2.988.149a1.5,1.5,0,0,0,1.5-1.5v-5.338A3.345,3.345,0,0,0,136.169,239.888Z" transform="translate(-114.254 -196.837)" fill="#acbfd6"/>
+  </g>
+</svg>

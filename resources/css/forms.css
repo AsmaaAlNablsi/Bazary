@@ -1,0 +1,36 @@
+.v-field--variant-solo {
+    --v-input-control-height: 1px !important;
+    --v-field-padding-bottom: 5px !important;
+    background: transparent !important;
+    border-radius: 7px !important;
+    border: 3px solid whitesmoke !important;
+    box-shadow: none !important;
+}
+
+.v-field {
+    height: 60px !important;
+}
+
+.v-field-label {
+    font-size: 11px !important;
+    padding: 0 0 17px 0 !important;
+    font-weight: bold !important;
+}
+
+.v-input.v-input--horizontal > .v-input__details {
+    padding-top: 2px !important;
+    min-height: 18px;
+}
+
+.v-input.v-input--horizontal > .v-input__details > .v-messages > .v-messages__message {
+    font-size: 0.67rem;
+}
+
+input.v-field__input {
+    font-size: 0.84rem;
+}
+
+label.v-label {
+    font-size: 0.85rem;
+    letter-spacing: 0.00825em;
+}
