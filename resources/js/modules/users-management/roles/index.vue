@@ -14,55 +14,24 @@
             <img class="crud-icon" src="@/assets/icons/ic_add_2.svg">
         </v-btn>
         <div class="dt-w-1/2 sm:dt-w-full overflow-hidden">
-            <data-table :rows="tableData"
-                        :pagination="pagination"
-                        :query="query"
-                        :loading="isLoading"
-                        hoverable
-                        filter
-                        @loadData="loadData"
+            <t-data-table
+                :rows="tableData"
+                :pagination="pagination"
+                :query="query"
+                :loading="isLoading"
+                :userPermissions="userPermissions"
+                :cols="roleCols"
+                :actions="roleActions"
+                @loadData="loadData"
             >
-                <template #thead>
-                    <table-head>{{ $t('name_en') }}</table-head>
-                    <table-head>{{ $t('name_ar') }}</table-head>
-                    <table-head>{{ $t('actions') }}</table-head>
-                </template>
-
-                <template #tbody="{row}">
-                    <table-body v-text="row.name"/>
-                    <table-body v-text="row.name_ar"/>
-                    <table-body>
-                        <div class="crud-actions-container">
-                            <button
-                                v-if="userPermissions.includes('roles/details')"
-                                class="crud-action-btn">
-                                <router-link :to="{ name: 'roles/details', params: { id: row.id } }"
-                                             class="btn btn-warning">
-                                    <img alt="view" src="@/assets/icons/ic_view.svg">
-                                </router-link>
-                            </button>
-                            <button
-                                v-if="userPermissions.includes('roles/update')"
-                                class="crud-action-btn">
-                                <router-link :to="{ name: 'roles/update', params: { id: row.id } }">
-                                    <img alt="edit" src="@/assets/icons/ic_edite.svg">
-                                </router-link>
-                            </button>
-                            <button
-                                v-if="userPermissions.includes('roles/delete')"
-                                class="crud-action-btn" @click="deleteItem(row.id)">
-                                <img alt="delete" src="@/assets/icons/ic_delete.svg">
-                            </button>
-                        </div>
-                    </table-body>
-                </template>
-            </data-table>
+            </t-data-table>
         </div>
     </v-container>
 </template>
 
 <script setup>
 import useRoles from "../composables/roles.js";
+import TDataTable from "@/shared/components/t-data-table.vue";
 
 const {
     tableData,
@@ -72,6 +41,8 @@ const {
     loadData,
     deleteItem,
     router,
-    userPermissions
+    userPermissions,
+    roleCols,
+    roleActions
 } = useRoles()
 </script>

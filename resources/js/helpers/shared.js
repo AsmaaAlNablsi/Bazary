@@ -226,6 +226,10 @@ export default function useShared() {
         await dialog.reveal();
     }
 
+    const redirect = (routeName, params) => {
+        router.push({ name: routeName, params: params });
+    }
+
     function searchByDropdownList(value) {
         let search = '';
         Object.keys(value).forEach(key => {
@@ -267,6 +271,8 @@ export default function useShared() {
         showUpdateModal,
         showStoreModal,
         cancel,
-        detailsLoadData
+        detailsLoadData,
+        t,
+        redirect
     }
 }

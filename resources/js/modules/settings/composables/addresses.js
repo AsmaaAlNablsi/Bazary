@@ -1,6 +1,7 @@
 import {reactive, ref} from 'vue';
 import AddressesService from "@/services/addresses-service.js";
 import useShared from "@/helpers/shared.js";
+import addressTableItems from '../models/address-table-items';
 
 export default function useAddresses() {
 
@@ -27,11 +28,22 @@ export default function useAddresses() {
         cancel,
         saveItem,
         router,
-        userPermissions
+        userPermissions,
+        t
     } = useShared()
 
     service.value = AddressesService;
     const address = ref()
+
+    const changeParent = async (id) => {
+        parent.value = id;
+        await loadParentData()
+    }
+    
+    const {
+        cols: addressCols,
+        actions: addressActions
+    } = addressTableItems(t, changeParent, showUpdateModal, deleteItem);
 
     const form = reactive({
         name_ar: "",
@@ -53,6 +65,7 @@ export default function useAddresses() {
         ],
     }
 
+    
     return {
         itemData,
         tableData,
@@ -77,6 +90,9 @@ export default function useAddresses() {
         saveItem,
         cancel,
         router,
-        userPermissions
+        userPermissions,
+        changeParent,
+        addressCols,
+        addressActions
     }
 }

@@ -1,6 +1,7 @@
 import {reactive, ref} from 'vue'
 import GeneralCodesService from "@/services/general-codes-service.js";
 import useShared from "@/helpers/shared.js";
+import generalCodesTableItems from "../models/general-codes-table-items";
 
 export default function useGeneralCodes() {
 
@@ -27,13 +28,19 @@ export default function useGeneralCodes() {
         parent,
         saveItem,
         router,
-        userPermissions
+        userPermissions,
+        t
     } = useShared()
 
     service.value = GeneralCodesService;
 
     const generalCode = ref()
     const items = ref([])
+
+    const {
+        cols: generalCodesCols,
+        actions: generalCodesActions
+    } = generalCodesTableItems(t, showUpdateModal, deleteItem);
 
     const form = reactive({
         parent_id: parent.value,
@@ -116,6 +123,8 @@ export default function useGeneralCodes() {
         saveItem,
         deleteItem,
         router,
-        userPermissions
+        userPermissions,
+        generalCodesCols,
+        generalCodesActions
     }
 }
