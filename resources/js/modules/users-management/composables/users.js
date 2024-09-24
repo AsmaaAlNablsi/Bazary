@@ -2,6 +2,8 @@ import {reactive, ref} from 'vue'
 import UsersService from "@/services/users-service.js";
 import useShared from "@/helpers/shared.js";
 import RolesService from "@/services/roles-service.js";
+import userTableItems from "../models/user-table-items";
+import roleTableItems from "../models/role-table-items";
 
 export default function useUsers() {
 
@@ -21,11 +23,23 @@ export default function useUsers() {
         parent,
         router,
         errorHandle,
-        userPermissions
+        userPermissions,
+        t,
+        redirect
     } = useShared()
 
     service.value = UsersService;
     const roles = ref([])
+
+    const {
+        cols: userCols,
+        actions: userActions
+    } = userTableItems(t, deleteItem, redirect);
+
+    const {
+        cols: roleCols,
+    } = roleTableItems(t, deleteItem, redirect);
+
 
     const form = reactive({
         first_name: "",
@@ -127,6 +141,9 @@ export default function useUsers() {
         router,
         loadParentData,
         getRoles,
-        userPermissions
-    }
+        userPermissions,
+        userCols,
+        userActions,
+        roleCols,
+   }
 }

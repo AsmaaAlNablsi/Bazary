@@ -35,44 +35,17 @@
                 <img class="crud-icon" src="@/assets/icons/ic_add_2.svg">
             </v-btn>
             <div class="dt-w-1/2 sm:dt-w-full overflow-hidden">
-                <data-table
-                    :rows="tableData"
-                    :pagination="pagination"
-                    :query="query"
-                    :loading="isLoading"
-                    hoverable
-                    filter
-                    @loadData="loadParentData"
+                <t-data-table
+                :rows="tableData"
+                :pagination="pagination"
+                :query="query"
+                :loading="isLoading"
+                :userPermissions="userPermissions"
+                :cols="generalCodesCols"
+                :actions="generalCodesActions"
+                @loadData="loadData"
                 >
-                    <template #thead>
-                        <table-head>{{ $t('description_ar') }}</table-head>
-                        <table-head>{{ $t('description_en') }}</table-head>
-                        <table-head>{{ $t('is_active.is_active') }}</table-head>
-                        <table-head>{{ $t('actions') }}</table-head>
-                    </template>
-
-                    <template #tbody="{row}">
-                        <table-body v-text="row.description_ar"/>
-                        <table-body v-text="row.description_en"/>
-                        <table-body>
-                            <p v-text="$t('is_active.'  + row.is_active)"/>
-                        </table-body>
-                        <table-body>
-                            <div class="crud-actions-container">
-                            <v-a
-                                v-if="userPermissions.includes('general-codes/update')"
-                                @click="showUpdateModal(row)" class="crud-action-btn" >
-                                <img alt="edit" src="@/assets/icons/ic_edite.svg">
-                            </v-a>
-                            <button
-                                v-if="userPermissions.includes('general-codes/delete')"
-                                @click="deleteItem(row.id, true)" class="crud-action-btn">
-                                <img  alt="delete" src="@/assets/icons/ic_delete.svg">
-                            </button>
-                            </div>
-                        </table-body>
-                    </template>
-                </data-table>
+                </t-data-table>
             </div>
         </div>
     </v-container>
@@ -83,6 +56,7 @@ import useGeneralCodes from "../composables/general-codes.js";
 import {onMounted, watch} from "vue";
 import UpdateGeneral from "@/modules/settings/general-codes/update.vue";
 import CreateGeneral from "@/modules/settings/general-codes/create.vue";
+import TDataTable from "@/shared/components/t-data-table.vue";
 
 const {
     parent,
@@ -105,7 +79,9 @@ const {
     generalCodeParents,
     deleteItem,
     router,
-    userPermissions
+    userPermissions,
+    generalCodesCols,
+    generalCodesActions
 } = useGeneralCodes()
 
 

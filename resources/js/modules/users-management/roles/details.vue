@@ -43,24 +43,16 @@
             </v-row>
             <v-divider :thickness="2" class="mt-4 mb-5"></v-divider>
             <div v-if="parent && userPermissions.includes('permissions')" class="dt-w-1/2 sm:dt-w-full overflow-hidden">
-                <data-table :rows="tableData"
-                            :pagination="pagination"
-                            :query="query"
-                            :loading="isLoading"
-                            hoverable
-                            filter
-                            @loadData="loadParentData"
+                <t-data-table
+                :rows="tableData"
+                :pagination="pagination"
+                :query="query"
+                :loading="isLoading"
+                :userPermissions="userPermissions"
+                :cols="permissionCols"
+                @loadData="loadParentData"
                 >
-                    <template #thead>
-                        <table-head>{{ $t('name') }}</table-head>
-                        <table-head>{{ $t('name_ar') }}</table-head>
-                    </template>
-
-                    <template #tbody="{row}">
-                        <table-body v-text="row.name"/>
-                        <table-body v-text="row.name_ar"/>
-                    </template>
-                </data-table>
+                </t-data-table>
             </div>
 
         </v-row>
@@ -70,11 +62,12 @@
 <script setup>
 import useRoles from "../composables/roles.js";
 import {onMounted} from "vue";
+import TDataTable from "@/shared/components/t-data-table.vue";
 
 const {
     getItem, itemData, isLoading, permissions,
     loadParentData, tableData, query, pagination, parent,router,
-    userPermissions
+    userPermissions, permissionCols
 } = useRoles()
 const props = defineProps({
     id: {
