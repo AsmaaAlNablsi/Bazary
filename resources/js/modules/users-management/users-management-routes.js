@@ -13,56 +13,24 @@ const UsersManagementRoutes = [
         name: 'users',
         component: UsersIndex,
         meta: {
-            breadcrumbs: [
-                {
-                    title: 'navigation.home',
-                    to: '/'
-                },
-                {
-                    title: 'users.users'
-                }
-            ]
+            breadcrumb: 'users.users'
         }
     },
     {
         path: '/users/create',
         name: 'users/create',
-        component: UsersCreate,
+        component: UsersCreate, 
         meta: {
-            breadcrumbs: [
-                {
-                    title: 'navigation.home',
-                    to: '/'
-                },
-                {
-                    title: 'users.users',
-                    to: '/users'
-                },
-                {
-                    title: 'users.add',
-                }
-            ]
+            breadcrumb: 'users.add'
         }
-    },
+    }, 
     {
         path: "/users/:id/update",
         name: 'users/update',
         component: UsersUpdate,
         props: true,
         meta: {
-            breadcrumbs: [
-                {
-                    title: 'navigation.home',
-                    to: '/'
-                },
-                {
-                    title: 'users.users',
-                    to: '/users'
-                },
-                {
-                    title:'users.edit',
-                }
-            ]
+            breadcrumb: 'users.edit'
         }
     },
     {
@@ -71,19 +39,7 @@ const UsersManagementRoutes = [
         component: UsersDetail,
         props: true,
         meta: {
-            breadcrumbs: [
-                {
-                    title: 'navigation.home',
-                    to: '/'
-                },
-                {
-                    title: 'users.users',
-                    to: '/users'
-                },
-                {
-                    title: 'users.details',
-                }
-            ]
+            breadcrumb: 'users.details'
         }
     },
     {
@@ -91,15 +47,7 @@ const UsersManagementRoutes = [
         name: 'roles',
         component: RolesIndex,
         meta: {
-            breadcrumbs: [
-                {
-                    title: 'navigation.home',
-                    to: '/'
-                },
-                {
-                    title: 'roles.roles'
-                }
-            ]
+            breadcrumb: 'roles.roles'
         }
     },
     {
@@ -107,19 +55,7 @@ const UsersManagementRoutes = [
         name: 'roles/create',
         component: RolesCreate,
         meta: {
-            breadcrumbs: [
-                {
-                    title: 'navigation.home',
-                    to: '/'
-                },
-                {
-                    title: 'roles.roles',
-                    to: '/roles'
-                },
-                {
-                    title: 'roles.add',
-                }
-            ]
+            breadcrumb: 'roles.add'
         }
     },
     {
@@ -128,19 +64,7 @@ const UsersManagementRoutes = [
         component: RolesUpdate,
         props: true,
         meta: {
-            breadcrumbs: [
-                {
-                    title: 'navigation.home',
-                    to: '/'
-                },
-                {
-                    title: 'roles.roles',
-                    to: '/roles'
-                },
-                {
-                    title: 'roles.edit',
-                }
-            ]
+            breadcrumb: 'roles.edit'
         }
     },
     {
@@ -149,19 +73,7 @@ const UsersManagementRoutes = [
         component: RolesDetail,
         props: true,
         meta: {
-            breadcrumbs: [
-                {
-                    title: 'navigation.home',
-                    to: '/'
-                },
-                {
-                    title: 'roles.roles',
-                    to: '/roles'
-                },
-                {
-                    title: 'roles.details',
-                }
-            ]
+            breadcrumb: 'roles.details'
         }
     }
 ];

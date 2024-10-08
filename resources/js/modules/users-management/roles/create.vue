@@ -1,9 +1,11 @@
 <template>
-    <v-breadcrumbs :items="router.currentRoute.value.meta.breadcrumbs">
-        <template v-slot:title="{ item }">
-            {{ $t(item.title) }}
-        </template>
-    </v-breadcrumbs>
+    <v-container>
+        <t-breadcrumbs
+            :path="router.currentRoute.value.path"
+            :title="router.currentRoute.value.meta.breadcrumb"
+        >
+        </t-breadcrumbs>
+    </v-container>
     <v-container>
         <v-row class="p-0 m-0">
             <v-col cols="12" class="font-weight-black">
@@ -80,6 +82,8 @@
 <script setup>
 import useRoles from "../composables/roles.js";
 import {onMounted} from "vue";
+
+import TBreadcrumbs from "@/shared/components/t-breadcrumbs.vue";
 
 const {
     storeItem, validation, form, valid,
