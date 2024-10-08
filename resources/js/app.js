@@ -12,15 +12,31 @@ import Notifications from '@kyvg/vue3-notification'
 import {DataTable, TableBody, TableHead} from "@jobinsjp/vue3-datatable"
 import "@jobinsjp/vue3-datatable/dist/style.css"
 
-import {createApp} from 'vue';
+import {createApp, ref} from 'vue';
 import Router from "./helpers/router";
 import App from './app.vue';
 import Store from "./store/store.js";
 import axios from "axios";
+import cookie from "vue-cookies";
 
 const app = createApp(App);
 
 app.config.globalProperties.$axios = axios;
+
+const breadcrumbs = ref([
+    {
+        title: 'navigation.home',
+        to: '/'
+    }
+]);
+
+if(!cookie.get('breadcrumbs')) {
+    cookie.set('breadcrumbs', breadcrumbs.value);
+} else {
+    breadcrumbs.value = cookie.get('breadcrumbs');
+}
+
+app.provide('breadcrumbs', breadcrumbs);
 
 app.use(Vuetify)
     .use(Router)

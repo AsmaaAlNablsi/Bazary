@@ -1,9 +1,12 @@
 <template>
-    <v-breadcrumbs :items="router.currentRoute.value.meta.breadcrumbs">
-        <template v-slot:title="{ item }">
-            {{ $t(item.title) }}
-        </template>
-    </v-breadcrumbs>
+    <v-container>
+        <t-breadcrumbs
+            :path="router.currentRoute.value.path"
+            :title="router.currentRoute.value.meta.breadcrumb"
+            :reset="true"
+        >
+        </t-breadcrumbs>
+    </v-container>
     <v-container class="container">
         <h3> {{ $t('roles.roles') }}</h3>
         <v-divider :thickness="2" class="mt-3 mb-4"></v-divider>
@@ -63,6 +66,7 @@
 
 <script setup>
 import useRoles from "../composables/roles.js";
+import TBreadcrumbs from "@/shared/components/t-breadcrumbs.vue";
 
 const {
     tableData,
