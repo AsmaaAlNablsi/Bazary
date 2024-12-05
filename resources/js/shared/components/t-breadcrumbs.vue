@@ -26,7 +26,7 @@ const addBreadcrumbs = () => {
     if (props.reset) {
         breadcrumbs.value = [
             {
-                title: "navigation.home",
+                title: "navigation.dashboard",
                 to: "/",
             },
         ];
@@ -38,7 +38,7 @@ const addBreadcrumbs = () => {
     });
 
     /// Check if breadcrumb is already existed
-    const idx = breadcrumbs.value.findIndex((value) => value.to == props.path);
+    const idx = breadcrumbs.value.findIndex((value) => value.to === props.path);
     if (idx > -1) {
         breadcrumbs.value = breadcrumbs.value.slice(0, idx + 1);
     }

@@ -4,6 +4,11 @@ namespace App\Enums;
 
 enum UnitsEnum: string
 {
+    /**
+     * Example of enum
+     */
+    use EnumTrait;
+
     case MIN = 'minutes';
     case SEC = 'seconds';
     case HR = 'hours';
@@ -16,4 +21,13 @@ enum UnitsEnum: string
     {
         return array_map(fn($x) => $x->value, self::cases());
     }
+
+    const ENUM_DATA = [
+        self::MIN->value => [
+            'title_en' => 'Min',
+            'title_ar' => 'دقائق',
+            'value' => 'min',
+        ]
+    ];
 }
+

@@ -13,7 +13,7 @@
             </v-list-item>
             <v-divider :thickness="2" class="mb-3 mt-2"></v-divider>
             <v-list-item v-if="$store.state.auth.status.loggedIn"
-                         to="/dashboard">
+                         to="/">
                 <img src="@/assets/icons/ic_dashboard.svg">
                 <span class="px-3"> {{ $t('navigation.dashboard') }}</span>
             </v-list-item>

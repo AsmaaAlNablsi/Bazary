@@ -24,15 +24,15 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'email', 'exists:users,email',
+            'email' => ['required', 'email',
                 function ($attribute, $value, $fail) {
                     $user = User::whereEmail($this->email)->whereIsActive(true)
                         ->first();
                     if (!$user)
-                        $fail(trans('validation.exists'));
+                        $fail(trans('auth.invalid_credentials'));
                 }
             ],
-            'password' => ['required', Password::min(8)->mixedCase()->symbols()],
+            'password' => ['required'],
         ];
     }
 }

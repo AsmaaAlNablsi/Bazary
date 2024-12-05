@@ -28,6 +28,7 @@ export default defineConfig({
                     includeAbsolute: false,
                 },
             },
+
         }),
         VueI18nPlugin({
             include: path.resolve(__dirname, './resources/js/locales/**')

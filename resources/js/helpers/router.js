@@ -15,7 +15,7 @@ const routes = [
     {
         path: "/:catchAll(.*)",
         name: "NotFound",
-        redirect: {name: 'home'},
+        redirect: {name: 'dashboard'},
         meta: {
             requiresAuth: false
         }
@@ -36,15 +36,15 @@ router.beforeEach((to, from, next) => {
     if (authRequired && !loggedIn) {
         next('/login');
     } else if (authRequired && loggedIn) {
-        if ((to.name === 'home') || store.state.auth.user.permissions.includes(to.name)) {
+        if ((to.name === 'dashboard') || store.state.auth.user.permissions.includes(to.name)) {
             next();
         } else {
             notify(i18n.global.t('unauthorized'));
-            next('/home');
+            next('/');
         }
     } else {
         if (!authRequired && loggedIn && to.path === '/login')
-            next('/home')
+            next('/')
         next();
     }
 });

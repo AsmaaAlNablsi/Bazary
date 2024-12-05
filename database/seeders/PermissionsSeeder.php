@@ -74,30 +74,6 @@ class PermissionsSeeder extends Seeder
                 'name' => 'addresses/toggle-activation',
             ],
             [
-                'name_ar' => 'عرض قائمة الفهارس',
-                'name' => 'general-codes',
-            ],
-            [
-                'name_ar' => 'إنشاء فهرس',
-                'name' => 'general-codes/create',
-            ],
-            [
-                'name_ar' => 'تعديل فهرس',
-                'name' => 'general-codes/update',
-            ],
-            [
-                'name_ar' => 'عرض تفاصيل فهرس',
-                'name' => 'general-codes/how',
-            ],
-            [
-                'name_ar' => 'حذف فهرس',
-                'name' => 'general-codes/delete',
-            ],
-            [
-                'name_ar' => 'تفعيل / إلغاء تفعيل فهرس',
-                'name' => 'general-codes/toggle-activation',
-            ],
-            [
                 'name_ar' => 'عرض قائمة المستخدمين',
                 'name' => 'users',
             ],

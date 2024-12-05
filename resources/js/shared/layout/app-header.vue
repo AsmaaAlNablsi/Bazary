@@ -1,7 +1,7 @@
 <template >
     <v-app-bar flat class="header-nav">
         <v-toolbar-title>
-            <router-link to="/home">
+            <router-link to="/">
                 <img class="header-logo" src="@/assets/logo/logo.png">
             </router-link>
         </v-toolbar-title>

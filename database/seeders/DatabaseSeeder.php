@@ -20,7 +20,6 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('Tatweer@123'),
         ]);
         $this->call([
-            GeneralCodeSeeder::class,
             AddressSeeder::class,
             PermissionsSeeder::class
         ]);

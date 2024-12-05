@@ -5,7 +5,7 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('logo.png') }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>Laravel 10 - Vue.js 3</title>
+        <title>Laravel 11 - Vue.js 3</title>
         @vite(['resources/css/app.css'])
     </head>
     <body>

@@ -1,9 +1,12 @@
 <template>
-    <v-breadcrumbs :items="router.currentRoute.value.meta.breadcrumbs">
-        <template v-slot:title="{ item }">
-            {{ $t(item.title) }}
-        </template>
-    </v-breadcrumbs>
+    <v-container>
+        <t-breadcrumbs
+            :path="router.currentRoute.value.path"
+            :title="router.currentRoute.value.meta.breadcrumb"
+            :reset="true"
+        >
+        </t-breadcrumbs>
+    </v-container>
     <v-container>
         ...
     </v-container>
@@ -12,6 +15,7 @@
 
 <script setup>
 import useShared from "@/helpers/shared.js";
+import TBreadcrumbs from "@/shared/components/t-breadcrumbs.vue";
 
 const {
     router

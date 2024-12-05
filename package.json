@@ -2,31 +2,34 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "dev": "vite"
     },
     "devDependencies": {
-        "@mdi/font": "^7.2.96",
-        "@vue-leaflet/vue-leaflet": "^0.10.1",
-        "axios": "^1.1.2",
-        "laravel-vite-plugin": "^0.7.5",
-        "leaflet": "^1.9.4",
-        "vite": "^4.0.0",
-        "vue": "^3.2.36"
+        "autoprefixer": "^10.4.20",
+        "axios": "^1.7.4",
+        "concurrently": "^9.0.1",
+        "laravel-vite-plugin": "^1.0",
+        "postcss": "^8.4.47",
+        "tailwindcss": "^3.4.13",
+        "vite": "^5.0"
     },
     "dependencies": {
-        "@intlify/unplugin-vue-i18n": "^0.12.3",
+        "@intlify/unplugin-vue-i18n": "^6.0.0",
         "@jobinsjp/vue3-datatable": "^1.0.15",
-        "@kyvg/vue3-notification": "^2.9.1",
-        "@vitejs/plugin-vue": "^4.2.3",
+        "@kyvg/vue3-notification": "^3.4.1",
+        "@vitejs/plugin-vue": "^5.2.1",
+        "apexcharts": "^4.1.0",
         "material-design-icons-iconfont": "^6.7.0",
+        "vue": "^3.5.13",
         "vue-axios": "^3.5.2",
-        "vue-cookies": "^1.8.3",
-        "vue-i18n": "^9.2.2",
-        "vue-loader": "^17.0.1",
-        "vue-router": "^4.0.13",
-        "vuejs-confirm-dialog": "^0.5.0",
-        "vuetify": "^3.3.17",
+        "vue-cookies": "^1.8.4",
+        "vue-i18n": "^10.0.5",
+        "vue-loader": "^17.4.2",
+        "vue-router": "^4.5.0",
+        "vue3-apexcharts": "^1.8.0",
+        "vuejs-confirm-dialog": "^0.5.2",
+        "vuetify": "^3.7.5",
         "vuex": "^4.1.0"
     }
 }

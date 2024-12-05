@@ -1,8 +1,5 @@
 <template>
         <v-row class="login-row p-0 m-0">
-            <v-col-auto class="login-image">
-                <img src="@/assets/backgrounds/login.png">
-            </v-col-auto>
             <v-col class="pb-0 mb-0 mt-5 text-center">
                  <v-container class="w-50">
                      <notifications position="top left" />

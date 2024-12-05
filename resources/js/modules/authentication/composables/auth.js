@@ -38,7 +38,7 @@ export default function useAuth() {
         if (valid.value) {
             store.dispatch("auth/login", userData).then(
                 () => {
-                    router.push("/home");
+                    router.push("/");
                 },
                 (error) => {
                    notify(error.response.data.message);
