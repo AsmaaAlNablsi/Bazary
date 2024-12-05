@@ -1,5 +1,8 @@
 <template >
     <v-app-bar flat class="header-nav">
+        <v-app-bar-nav-icon
+        class="hidden-lg-and-up"
+        variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
         <v-toolbar-title>
             <router-link to="/">
                 <img class="header-logo" src="@/assets/logo/logo.png">
@@ -18,17 +21,14 @@
 
     </v-app-bar>
 </template>
-<script>
-import LocaleSwitcher from "../components/locale-switcher.vue"
+<script setup>
+import store from "../../store/store.js";
+import LocaleSwitcher from "../components/locale-switcher.vue";
+import router from "@/helpers/router.js";
 
-export default {
-    name: 'app-header',
-    components: { LocaleSwitcher },
-    methods: {
-        logOut() {
-            this.$store.dispatch('auth/logout');
-            this.$router.push('/login');
-        }
-    }
-}
+const logOut = () => {
+  store.dispatch("auth/logout");
+  router.push("/login");
+};
+const drawer = defineModel("drawer", {type: Boolean});
 </script>

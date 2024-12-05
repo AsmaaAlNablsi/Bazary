@@ -1,7 +1,7 @@
-import AddressesIndex from "@/modules/settings/addresses/index.vue";
-import AddressCreate from "@/modules/settings/addresses/create.vue";
-import AddressUpdate from "@/modules/settings/addresses/update.vue";
-import AddressDetail from "@/modules/settings/addresses/details.vue";
+const AddressesIndex = () => import("@/modules/settings/addresses/index.vue");
+const AddressCreate = () => import("@/modules/settings/addresses/create.vue");
+const AddressUpdate = () => import("@/modules/settings/addresses/update.vue");
+const AddressDetail = () => import("@/modules/settings/addresses/details.vue");
 
 const SettingsRoutes = [
     {
