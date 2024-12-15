@@ -8,6 +8,8 @@ import store from "@/store/store.js";
 import '../../css/crud.css';
 import '../../css/forms.css';
 import '../../css/modal.css';
+import { useVuelidate } from '@vuelidate/core'
+import * as validators from '@vuelidate/validators'
 
 export default function useShared() {
     const {t} = useI18n({})
@@ -42,13 +44,23 @@ export default function useShared() {
     const currentUser = store.state.auth.user;
     const userPermissions = currentUser? currentUser.permissions : [] ;
 
+    
     const validationRules = {
-        email: value => /.+@.+\..+/.test(value) || t('validation.email'),
-        mobile: value => /^09[0-9]{8}$/.test(value) || t('validation.mobile'),
+        // email: value => validators.email.$validator(value) || t('validation.email'),
+        email: value => validators.regex(/.+@.+\..+/, t('validation.email')),
+        mobile: value => validators.regex(/^09[0-9]{8}$/, t('validation.mobile')),
         phone: value => /^0[0-9]{9}$/.test(value) || t('validation.phone'),
         password: value => /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/.test(value) || t('validation.password'),
-        required: value => !!value || t('validation.required')
+        required: value => validators.required.$validator(value) || t('validation.required')
     }
+
+    // const validationRules = {
+    //     email: value => /.+@.+\..+/.test(value) || t('validation.email'),
+    //     mobile: value => /^09[0-9]{8}$/.test(value) || t('validation.mobile'),
+    //     phone: value => /^0[0-9]{9}$/.test(value) || t('validation.phone'),
+    //     password: value => /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/.test(value) || t('validation.password'),
+    //     required: value => !!value || t('validation.required')
+    // }
 
     const errorHandle = async (error) => {
         console.log('error')
@@ -239,6 +251,8 @@ export default function useShared() {
     }
 
     return {
+        validationRules,
+
         router,
         currentUser,
         userPermissions,
