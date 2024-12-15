@@ -2,9 +2,9 @@
 export default function addressTableItems(t, changeParent, showUpdateModal, deleteItem) {
 
     const cols = [
-        { header: 'Name AR', field: t('name_ar'), cell: (item) => item.name_ar },
-        { header: 'Name EN', field: t('name_en'), cell: (item) => item.name_en },
-        { header: 'Is Active', field: t('is_active.is_active'), cell: (item) => t('is_active.'  + item.is_active) }
+        { header: 'Name AR', field: 'name_ar', cell: (item) => item.name_ar },
+        { header: 'Name EN', field: 'name_en', cell: (item) => item.name_en },
+        { header: 'Is Active', field: 'is_active.is_active', cell: (item) => t('is_active.'  + item.is_active) }
     ];
 
     const actions = [
