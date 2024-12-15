@@ -1,4 +1,4 @@
-import Dashboard from './dashboard.vue';
+const Dashboard  = () => import('./dashboard.vue');
 
 const DashboardRoutes = [
     {

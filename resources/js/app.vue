@@ -1,8 +1,8 @@
 <template>
     <v-app v-if="$store.state.auth.status.loggedIn">
         <v-container class="px-0 py-0">
-            <app-header />
-            <app-navigation />
+            <app-header v-model:drawer="drawer" />
+            <app-navigation v-model:drawer="drawer" />
         </v-container>
         <v-main class="flex-0-0">
             <notifications :position="'top '+$t('right')" />
@@ -26,6 +26,11 @@ import AppHeader from "./shared/layout/app-header.vue";
 
 export default {
     name: "App",
+    data() {
+        return {
+            drawer: true
+        }
+    },
     components: { AppHeader, AppFooter, AppNavigation },
     mounted() {
         if (localStorage.getItem('lang')) {

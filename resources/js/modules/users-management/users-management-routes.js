@@ -1,11 +1,12 @@
-import UsersIndex from './users/index.vue';
-import UsersCreate from './users/create.vue';
-import UsersUpdate from './users/update.vue';
-import UsersDetail from './users/details.vue';
-import RolesIndex from './roles/index.vue';
-import RolesCreate from './roles/create.vue';
-import RolesUpdate from './roles/update.vue';
-import RolesDetail from './roles/details.vue';
+const UsersIndex = () => import ('./users/index.vue');
+const UsersCreate = () => import ('./users/create.vue');
+const UsersUpdate = () => import ('./users/update.vue');
+const UsersDetail = () => import ('./users/details.vue');
+const RolesIndex = () => import ('./roles/index.vue');
+const RolesCreate = () => import ('./roles/create.vue');
+const RolesUpdate = () => import ('./roles/update.vue');
+const RolesDetail = () => import ('./roles/details.vue');
+
 
 const UsersManagementRoutes = [
     {

@@ -1,4 +1,4 @@
-import Login from '../authentication/auth/login.vue';
+const Login = () => import('../authentication/auth/login.vue');
 const Profile = () => import("../authentication/auth/profile.vue")
 
 const AuthRoutes = [
