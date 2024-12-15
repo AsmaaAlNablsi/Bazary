@@ -23,19 +23,22 @@ const app = createApp(App);
 
 app.config.globalProperties.$axios = axios;
 
+/* define loader */
+const isLoading = ref(true);
+app.provide('isLoading',isLoading);
+
+/* define breadcrumb */
 const breadcrumbs = ref([
     {
         title: 'navigation.home',
         to: '/'
     }
 ]);
-
 if(!cookie.get('breadcrumbs')) {
     cookie.set('breadcrumbs', breadcrumbs.value);
 } else {
     breadcrumbs.value = cookie.get('breadcrumbs');
 }
-
 app.provide('breadcrumbs', breadcrumbs);
 
 app.use(Vuetify)

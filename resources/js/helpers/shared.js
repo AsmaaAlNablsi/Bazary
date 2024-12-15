@@ -1,6 +1,6 @@
 import {useRouter} from 'vue-router';
 import {useI18n} from "vue-i18n";
-import {ref} from "vue";
+import {inject, ref} from "vue";
 import {notify} from "@kyvg/vue3-notification";
 import {createConfirmDialog} from "vuejs-confirm-dialog";
 import ConfirmDialog from "@/shared/components/confirm-dialog.vue";
@@ -25,7 +25,8 @@ export default function useShared() {
     })
     const unAuthenticated = 401;
     const unAuthorized = 403;
-    const isLoading = ref(true)
+    const isLoading = inject('isLoading')
+    isLoading.value = true;
     const updateModal = ref(false);
     const storeModal = ref(false);
     const parentDetails = ref({})
