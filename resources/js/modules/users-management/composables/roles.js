@@ -59,9 +59,9 @@ export default function useRoles() {
         ]
     }
 
-    const getItem = async (id) => {
+    const getItem = async (id, showLoader = false) => {
         try {
-            const response = await service.value.show(id);
+            const response = await service.value.show(id, showLoader);
             itemData.value = response.data.data['role'];
             itemData.value['permissions'] = response.data.data['permissions'];
             isLoading.value = false
@@ -70,14 +70,14 @@ export default function useRoles() {
         }
     }
 
-    const getPerms = async () => {
+    const getPerms = async (showLoader = false) => {
         try {
             const {data: {data}} = await PermissionsService.index({
                 parent_id: '',
                 page: 1,
                 size: 1000000,
                 search: '',
-            });
+            }, showLoader);
             permissions.value = data;
         } catch (error) {
             errorHandle(error)

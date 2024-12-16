@@ -1,6 +1,6 @@
 import {useRouter} from 'vue-router';
 import {useI18n} from "vue-i18n";
-import {ref} from "vue";
+import {inject, ref} from "vue";
 import {notify} from "@kyvg/vue3-notification";
 import {createConfirmDialog} from "vuejs-confirm-dialog";
 import ConfirmDialog from "@/shared/components/confirm-dialog.vue";
@@ -27,7 +27,7 @@ export default function useShared() {
     })
     const unAuthenticated = 401;
     const unAuthorized = 403;
-    const isLoading = ref(true)
+    const isLoading = ref(true);
     const updateModal = ref(false);
     const storeModal = ref(false);
     const parentDetails = ref({})
@@ -131,9 +131,9 @@ export default function useShared() {
         }
     }
 
-    const getItem = async (id) => {
+    const getItem = async (id, showLoader = false) => {
         try {
-            const response = await service.value.show(id);
+            const response = await service.value.show(id, showLoader);
             itemData.value = response.data.data;
             isLoading.value = false
         } catch (error) {
@@ -145,64 +145,86 @@ export default function useShared() {
         storeModal.value = true;
     }
 
-    const storeItem = async (data, routeName = '', forParent = false, modal = false,refresh = true) => {
-        if (!modal) {
-            if (!valid.value)
-                return false;
-        }
-
-        try {
-            if (forParent)
-                data['parent_id'] = parent.value;
-            let response = await service.value.store(data);
-            notify(response.data.message);
-            if (modal) {
-                if (forParent && refresh)
-                    await loadParentData()
-                else if(refresh)
-                    await loadData()
-                storeModal.value = false
-            } else
-                await router.push({name: routeName});
-        } catch (error) {
-            await errorHandle(error)
-        }
-    }
-
-
-    const saveItem = async (obj) => {
-        await storeItem(obj, '', true, true)
-    }
-
     function showUpdateModal(item) {
         updateModal.value = true;
         itemData.value = item;
     }
 
-    const updateItem = async (item, routeName = '', forParent = false, modal = false, refresh = true) => {
-        if (!modal) {
-            if (!valid.value)
-                return false;
-        }
+    const storeItem = async (data, routeName = '', showLoader = false) => {
+        if (!valid.value)
+            return false;
         try {
-            let response = await service.value.update(item, item.id);
+            let response = await service.value.store(data, showLoader);
             notify(response.data.message);
-            if (modal) {
-                if (forParent && refresh)
-                    await loadParentData()
-                else if(refresh)
-                    await loadData()
-                updateModal.value = false
-            } else
-                await router.push({name: routeName});
+            await loadData();
+            storeModal.value = false;
+            await router.push({ name: routeName });
         } catch (error) {
-            await errorHandle(error)
+            await errorHandle(error);
+        }
+    }
+    
+    const storeModalItem = async (data, showLoader = false) => {
+        try {
+            let response = await service.value.store(data, showLoader);
+            notify(response.data.message);
+            await loadData();
+            storeModal.value = false;
+        } catch (error) {
+            await errorHandle(error);
         }
     }
 
-    function cancel() {
-        storeModal.value = false;
-        updateModal.value = false;
+    const storeModalItemForParent = async (data, showLoader = false) => {
+        try {
+            data['parent_id'] = parent.value;
+            let response = await service.value.store(data, showLoader);
+            notify(response.data.message);
+            await loadParentData();
+            storeModal.value = false;
+        } catch (error) {
+            await errorHandle(error);
+        }
+    }
+
+    const saveItem = async (obj) => {
+        await storeItem(obj, '', true, true)
+    }
+
+    const updateItem = async (item, routeName = '', showLoader = false) => {
+        if (!valid.value)
+            return false;
+        try {
+            let response = await service.value.update(item, item.id, showLoader);
+            notify(response.data.message);
+            await loadData();
+            updateModal.value = false;
+            await router.push({ name: routeName });
+        } catch (error) {
+            await errorHandle(error);
+        }
+    }
+
+    const updateModalItem = async (item, showLoader = false) => {
+        try {
+            let response = await service.value.update(item, item.id, showLoader);
+            notify(response.data.message);
+            await loadData();
+            updateModal.value = false;
+        } catch (error) {
+            await errorHandle(error);
+        }
+    }
+
+    const updateModalItemForParent = async (item, showLoader = false) => {
+        try {
+            let response = await service.value.update(item, item.id, showLoader);
+            notify(response.data.message);
+            await loadParentData();
+            updateModal.value = false;
+        } catch (error) {
+            await errorHandle(error);
+        }
     }
 
     const deleteItem = async (id, forParent = false) => {
@@ -249,6 +271,10 @@ export default function useShared() {
         itemData,
         updateModal,
         storeModal,
+        storeModalItem,
+        updateModalItem,
+        storeModalItemForParent,
+        updateModalItemForParent,
         parent,
         parentDetails,
         master,

@@ -115,12 +115,12 @@ const props = defineProps({
     }
 })
 onMounted(() => {
-    getRoles();
-    getItem(props.id)
+    getRoles(true);
+    getItem(props.id, true)
 })
 
 
 const saveUser = async () => {
-    await updateItem(itemData.value, 'users')
+    await updateItem(itemData.value, 'users', true)
 }
 </script>

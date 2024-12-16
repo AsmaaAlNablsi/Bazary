@@ -82,7 +82,7 @@ const props = defineProps({
 
 onMounted(() => {
     parent.value = props.id
-    getItem(props.id);
+    getItem(props.id, true);
 })
 
 </script>

@@ -10,34 +10,34 @@ export default class BaseService {
         return axios.get('/lang', {headers: authHeader()});
     }
 
-    index(params) {
+    index(params, showLoader) {
         return axios.get(this.routPath + '?page=' + params.page +
             "&limit=" + params.size + "&search=" + params.search
-            , {headers: authHeader()}
+            , {headers: authHeader(), showLoader: showLoader}
         );
     }
     detailsIndex(id, params){
         return axios.get(this.routPath + '/details/' + id + '?page=' + params.page +
         "&limit=" + params.size + "&search=" + params.search
-        , {headers: authHeader()}
+        , {headers: authHeader(), showLoader: showLoader}
     );
 
     }
-    show(id) {
+    show(id, showLoader) {
         return axios.get(this.routPath + '/' + id
-            , {headers: authHeader()});
+            , {headers: authHeader(), showLoader});
     }
 
-    store(obj) {
-        return axios.post(this.routPath, obj, {headers: authHeader()});
+    store(obj, showLoader) {
+        return axios.post(this.routPath, obj, {headers: authHeader(), showLoader});
     }
 
-    update(obj, id) {
-        return axios.put(this.routPath + '/' + id, obj, {headers: authHeader()});
+    update(obj, id, showLoader) {
+        return axios.put(this.routPath + '/' + id, obj, {headers: authHeader(), showLoader});
     }
 
-    destroy(id) {
-        return axios.delete(this.routPath + '/' + id, {headers: authHeader()});
+    destroy(id, showLoader) {
+        return axios.delete(this.routPath + '/' + id, {headers: authHeader(), showLoader});
     }
 
     toggleActivation(id) {

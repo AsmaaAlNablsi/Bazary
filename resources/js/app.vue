@@ -8,6 +8,7 @@
             <notifications :position="'top '+$t('right')" />
             <div class="main-div">
                 <v-card width="95%" class="pa-5 mx-auto layout-card" color="white" outlined>
+                    <t-loader></t-loader>
                     <router-view></router-view>
                 </v-card>
             </div>
@@ -23,6 +24,7 @@
 import AppNavigation from "./shared/layout/app-navigation.vue";
 import AppFooter from "./shared/layout/app-footer.vue";
 import AppHeader from "./shared/layout/app-header.vue";
+import TLoader from "./shared/components/t-loader.vue";
 
 export default {
     name: "App",
@@ -31,7 +33,7 @@ export default {
             drawer: true
         }
     },
-    components: { AppHeader, AppFooter, AppNavigation },
+    components: { AppHeader, AppFooter, AppNavigation, TLoader },
     mounted() {
         if (localStorage.getItem('lang')) {
             this.$i18n.locale = localStorage.getItem('lang')

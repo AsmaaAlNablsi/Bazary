@@ -88,13 +88,13 @@ import {onMounted} from "vue";
 
 import TBreadcrumbs from "@/shared/components/t-breadcrumbs.vue";
 
-const {storeItem, validation, form, valid, roles, router, getRoles} = useUsers()
+const {isLoading, storeItem, validation, form, valid, roles, router, getRoles} = useUsers()
 
 onMounted(() => {
-    getRoles()
+    getRoles(true)
 });
 
 const saveUser = async () => {
-    await storeItem({...form}, 'users')
+    await storeItem({...form}, 'users', true)
 }
 </script>

@@ -90,9 +90,9 @@ const props = defineProps({
     }
 })
 
-onMounted(() => {
+onMounted(async () => {
     parent.value = props.id
-    getItem(props.id);
+    getItem(props.id, true);
 
 })
 </script>
