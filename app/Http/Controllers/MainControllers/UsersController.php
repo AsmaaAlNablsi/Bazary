@@ -8,7 +8,6 @@ use App\Http\Requests\UserRequests\UpdateUserRequest;
 use App\Http\Requests\UserRequests\UserIndexRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
-use Illuminate\Validation\Validator;
 
 
 class UsersController extends Controller
