@@ -121,6 +121,6 @@ onMounted(() => {
 
 
 const saveUser = async () => {
-    await updateItem(itemData.value, 'users', false, false, true, true)
+    await updateItem(itemData.value, 'users', true)
 }
 </script>

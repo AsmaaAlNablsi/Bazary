@@ -41,9 +41,9 @@ class UsersController extends Controller
      * @param StoreUserRequest $request
      * @return UserResource
      */
-    public function store(StoreUserRequest $request): UserResource
+    public function store(StoreUserRequest $request)
     {
-        return new UserResource(User::add($request));
+        return self::jsonResponse('success', new UserResource(User::add($request)));
     }
 
     /**

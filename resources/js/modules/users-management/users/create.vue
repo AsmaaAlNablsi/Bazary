@@ -95,6 +95,6 @@ onMounted(() => {
 });
 
 const saveUser = async () => {
-    await storeItem({...form}, 'users', false, false, true, true)
+    await storeItem({...form}, 'users', true)
 }
 </script>
