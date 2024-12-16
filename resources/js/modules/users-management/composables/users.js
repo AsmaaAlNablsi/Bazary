@@ -51,7 +51,8 @@ export default function useUsers() {
 
     const validation = {
         first_name: [
-            validationRules.required,
+            validationRules.optional,
+            // validationRules.required,
         ],
         last_name: [
             validationRules.required,

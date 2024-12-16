@@ -46,21 +46,13 @@ export default function useShared() {
 
     
     const validationRules = {
-        // email: value => validators.email.$validator(value) || t('validation.email'),
-        email: value => validators.regex(/.+@.+\..+/, t('validation.email')),
-        mobile: value => validators.regex(/^09[0-9]{8}$/, t('validation.mobile')),
+        email: value => validators.email.$validator(value) || t('validation.email'),
+        mobile: value => /^09[0-9]{8}$/.test(value) || t('validation.mobile'),
         phone: value => /^0[0-9]{9}$/.test(value) || t('validation.phone'),
         password: value => /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/.test(value) || t('validation.password'),
-        required: value => validators.required.$validator(value) || t('validation.required')
+        required: value => validators.required.$validator(value) || t('validation.required'),
+        optional: value => /^(?!\s)(?!\s+$).*/.test(value) || t('validation.optional')
     }
-
-    // const validationRules = {
-    //     email: value => /.+@.+\..+/.test(value) || t('validation.email'),
-    //     mobile: value => /^09[0-9]{8}$/.test(value) || t('validation.mobile'),
-    //     phone: value => /^0[0-9]{9}$/.test(value) || t('validation.phone'),
-    //     password: value => /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/.test(value) || t('validation.password'),
-    //     required: value => !!value || t('validation.required')
-    // }
 
     const errorHandle = async (error) => {
         console.log('error')

@@ -190,6 +190,7 @@
         "email" : "The field must be a valid email",
         "password": "The password must be 8 mixed chars at least",
         "phone": "The phone number must be 10 numbers starting with 0",
+        "optional": "It is required not to enter empty spaces or start with an empty space.",
         "mobile": "The mobile number must be 10 numbers starting with 09"
     },
     "is_active": {
