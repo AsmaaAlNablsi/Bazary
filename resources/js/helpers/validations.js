@@ -74,16 +74,16 @@ export default function useValidations(t) {
         (!helpers.req(value) || value.endsWith(string)) || t('validation.endsWith',{ string }),
 
     beforeOrEqual: toDate => fromDate => 
-        (new Date(toDate) <= new Date(fromDate)) || t('validation.BeforeOrEqual', { toDate }),
+        (new Date(toDate) <= new Date(fromDate)) || t('validation.beforeOrEqual', { toDate }),
 
     before: toDate => fromDate => 
-        (new Date(toDate) < new Date(fromDate)) || t('validation.Before', { toDate }),
+        (new Date(toDate) < new Date(fromDate)) || t('validation.before', { toDate }),
 
     afterOrEqual: fromDate => toDate => 
-        (new Date(fromDate) <= new Date(toDate)) || t('validation.AfterOrEqual', { fromDate }),
+        (new Date(fromDate) <= new Date(toDate)) || t('validation.afterOrEqual', { fromDate }),
 
     after: fromDate => toDate => 
-        (new Date(fromDate) < new Date(toDate)) || t('validation.After', { fromDate })
+        (new Date(fromDate) < new Date(toDate)) || t('validation.after', { fromDate })
 
   };
 
