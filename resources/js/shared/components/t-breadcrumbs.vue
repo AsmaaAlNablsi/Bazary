@@ -1,7 +1,7 @@
 <template>
     <v-breadcrumbs :items="breadcrumbs">
         <template v-slot:title="{ item }">
-            {{ $t(item.title ?? '') }}
+            {{ item.title }}
         </template>
     </v-breadcrumbs>
 </template>
@@ -24,12 +24,7 @@ onMounted(() => {
 
 const addBreadcrumbs = () => {
     if (props.reset) {
-        breadcrumbs.value = [
-            {
-                title: "navigation.dashboard",
-                to: "/",
-            },
-        ];
+        breadcrumbs.value = [];
     }
 
     breadcrumbs.value.push({

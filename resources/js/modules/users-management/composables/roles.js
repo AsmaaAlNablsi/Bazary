@@ -35,11 +35,11 @@ export default function useRoles() {
     const {
         cols: roleCols,
         actions: roleActions
-    } = roleTableItems(t, deleteItem, redirect);
+    } = roleTableItems(deleteItem, redirect);
 
     const {
         cols: permissionCols
-    } = permissionTableItems(t);
+    } = permissionTableItems();
     
     const form = reactive({
         name: "",

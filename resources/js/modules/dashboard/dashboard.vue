@@ -2,7 +2,7 @@
     <v-container>
         <t-breadcrumbs
             :path="router.currentRoute.value.path"
-            :title="router.currentRoute.value.meta.breadcrumb"
+            :title="$t(router.currentRoute.value.meta.breadcrumb)"
             :reset="true"
         >
         </t-breadcrumbs>

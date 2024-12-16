@@ -6,11 +6,7 @@ const DashboardRoutes = [
         name: 'dashboard',
         component: Dashboard,
         meta: {
-            breadcrumbs: [
-                {
-                    title: 'navigation.dashboard',
-                }
-            ]
+            breadcrumb: 'navigation.dashboard'
         }
     }
 ];

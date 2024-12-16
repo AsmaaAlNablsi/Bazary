@@ -9,7 +9,7 @@
         @loadData="emit('loadData', $event)"
     >
         <template #thead>
-            <table-head v-for="col in cols">{{ col.field }}</table-head>
+            <table-head v-for="col in cols">{{ $t(col.field) }}</table-head>
             <table-head v-if="actions">{{ $t("actions") }}</table-head>
         </template>
 
