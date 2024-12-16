@@ -22,7 +22,9 @@
         "addresses": "Addresses",
         "roles_management": "Roles Management",
         "real_estates_management": "Real Estates Management",
-        "real_estates_map": "Real Estates Positions"
+        "real_estates_map": "Real Estates Positions",
+        "powered_by": "مُشغَّل من قبل",
+        "tatweer": "تَطوير"
     },
     "users": {
         "users": "Users",

@@ -22,7 +22,9 @@
         "addresses": "العناوين",
         "roles_management": "إدارة الأدوار",
         "real_estates_management": "إدارة العقارات",
-        "real_estates_map": "مواقع العقارات"
+        "real_estates_map": "مواقع العقارات",
+        "powered_by": "مُشغَّل من قبل",
+        "tatweer": "تَطوير"
     },
     "users": {
         "users": "المستخدمون",
@@ -163,7 +165,7 @@
         "please_select_rejection_reason": "يرجى اختيار سبب الرفض",
         "define_about_accept_subscription": "علماً أنه سيبدأ تاريخ الاشتراك الفعلي من تاريخ تهيئة الأجهزة وتعريفها",
         "paid_invoices": "الفواتير المدفوعة",
-        "value": "قيمة الفاتورة",
+        "value": "قيمة الفاتورة"
     },
     "state": {
         "pending": "معلق",
@@ -231,5 +233,5 @@
     "Passport": "جواز سفر",
     "PersonalID": "هوية شخصية",
     "unauthorized": "ليست لديك الصلاحية لهذا",
-    "select": "تحديد",
+    "select": "تحديد"
 }
