@@ -18,14 +18,15 @@ import App from './app.vue';
 import Store from "./store/store.js";
 import axios from "axios";
 import cookie from "vue-cookies";
+import loader from './plugins/loader.js';
 
 const app = createApp(App);
 
 app.config.globalProperties.$axios = axios;
 
 /* define loader */
-const isLoading = ref(true);
-app.provide('isLoading',isLoading);
+const mainLoader = ref(0);
+app.provide('mainLoader',mainLoader);
 
 /* define breadcrumb */
 const breadcrumbs = ref([
@@ -47,6 +48,7 @@ app.use(Vuetify)
     .use(ConfirmDialog)
     .use(Notifications)
     .use(i18n)
+    .use(loader, {axios: axios, mainLoader: mainLoader})
     .component("DataTable", DataTable)
     .component("TableBody", TableBody)
     .component("TableHead", TableHead)

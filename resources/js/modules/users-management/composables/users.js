@@ -69,9 +69,9 @@ export default function useUsers() {
         ],
     }
 
-    const getItem = async (id) => {
+    const getItem = async (id, showLoader = false) => {
         try {
-            const response = await service.value.show(id);
+            const response = await service.value.show(id, showLoader);
             itemData.value = response.data.data['user'];
             itemData.value['roles'] = response.data.data['roles'];
             isLoading.value = false
@@ -80,14 +80,14 @@ export default function useUsers() {
         }
     }
 
-    const getRoles = async () => {
+    const getRoles = async (showLoader = false) => {
         try {
             const {data: {data}} = await RolesService.index({
                 parent_id: '',
                 page: 1,
                 size: 1000000,
                 search: '',
-            });
+            }, showLoader);
             roles.value = data;
         } catch (error) {
             errorHandle(error)

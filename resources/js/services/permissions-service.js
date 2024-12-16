@@ -9,12 +9,12 @@ class PermissionsService extends BaseService {
         super();
     }
 
-    index(params) {
+    index(params, showLoader) {
         return axios.get(this.routPath + '?parent_id=' + params.parent_id +
             '&page=' + params.page +
             "&limit=" + params.size +
             "&search=" + params.search
-            , {headers: authHeader()}
+            , {headers: authHeader(), showLoader}
         );
     }
 }

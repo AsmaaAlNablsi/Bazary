@@ -102,6 +102,6 @@ onMounted(() => {
 
 
 const saveRole = async () => {
-    await storeItem({...form}, 'roles')
+    await storeItem({...form}, 'roles', false, false, true, true)
 }
 </script>

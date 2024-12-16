@@ -25,8 +25,7 @@ export default function useShared() {
     })
     const unAuthenticated = 401;
     const unAuthorized = 403;
-    const isLoading = inject('isLoading')
-    isLoading.value = true;
+    const isLoading = ref(true);
     const updateModal = ref(false);
     const storeModal = ref(false);
     const parentDetails = ref({})
@@ -136,9 +135,9 @@ export default function useShared() {
         }
     }
 
-    const getItem = async (id) => {
+    const getItem = async (id, showLoader = false) => {
         try {
-            const response = await service.value.show(id);
+            const response = await service.value.show(id, showLoader);
             itemData.value = response.data.data;
             isLoading.value = false
         } catch (error) {
@@ -150,7 +149,7 @@ export default function useShared() {
         storeModal.value = true;
     }
 
-    const storeItem = async (data, routeName = '', forParent = false, modal = false,refresh = true) => {
+    const storeItem = async (data, routeName = '', forParent = false, modal = false,refresh = true, showLoader = false) => {
         if (!modal) {
             if (!valid.value)
                 return false;
@@ -159,7 +158,7 @@ export default function useShared() {
         try {
             if (forParent)
                 data['parent_id'] = parent.value;
-            let response = await service.value.store(data);
+            let response = await service.value.store(data, showLoader);
             notify(response.data.message);
             if (modal) {
                 if (forParent && refresh)
@@ -184,13 +183,13 @@ export default function useShared() {
         itemData.value = item;
     }
 
-    const updateItem = async (item, routeName = '', forParent = false, modal = false, refresh = true) => {
+    const updateItem = async (item, routeName = '', forParent = false, modal = false, refresh = true, showLoader = false) => {
         if (!modal) {
             if (!valid.value)
                 return false;
         }
         try {
-            let response = await service.value.update(item, item.id);
+            let response = await service.value.update(item, item.id, showLoader);
             notify(response.data.message);
             if (modal) {
                 if (forParent && refresh)

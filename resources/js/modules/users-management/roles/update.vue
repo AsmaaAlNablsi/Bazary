@@ -97,8 +97,8 @@ const props = defineProps({
 })
 
 onMounted(() => {
-    getPerms();
-    getItem(props.id)
+    getPerms(true);
+    getItem(props.id, true)
 })
 
 const saveRole = async () => {

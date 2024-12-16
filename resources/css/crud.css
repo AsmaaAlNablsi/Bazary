@@ -44,6 +44,10 @@
     min-width: 3.55rem !important;
 }
 
+.dt__loading>div[data-v-685865e4] {
+    height: 100% !important;
+}
+
 .dt__pagination__info {
     display: none !important;
 }
