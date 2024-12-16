@@ -201,9 +201,15 @@
         "alphaNum": "Only alphanumeric characters are allowed.",
         "numeric": "Only numeric values are allowed.",
         "integer": "Only integer values are allowed.",
+        "decimal": "Only decimal values are allowed.",
         "between": "Value must be between {min} and {max}.",
         "url": "Invalid URL.",
         "sameAs": "This field must match the required value.",
+        "requiredIf": "This field is required {message}.",
+        "requiredUnless": "This field is required {message}.",
+        "contains": "The value must contain '{string}'.",
+        "startsWith": "The value must start with '{string}'.",
+        "endsWith": "The value must end with '{string}'.",
         "mobile": "The mobile number must be 10 numbers starting with 09"
     },
     "is_active": {

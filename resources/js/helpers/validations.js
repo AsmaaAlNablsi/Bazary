@@ -58,26 +58,26 @@ export default function useValidations(t) {
     sameAs: comparedValue => value =>
       validators.sameAs(comparedValue).$validator(value) || t('validation.sameAs', {comparedValue}),
 
-    requiredIf: (condition) => value => 
-        validators.requiredIf(condition).$validator(value) || t('validation.requiredIf'),
+    requiredIf: (condition, message = '') => value => 
+        validators.requiredIf(condition).$validator(value) || t('validation.requiredIf', { message }),
 
-    requiredUnless: (condition) => value => 
-        validators.requiredUnless(condition).$validator(value) || t('validation.requiredUnless'),
+    requiredUnless: (condition, message = '') => value => 
+        validators.requiredUnless(condition).$validator(value) || t('validation.requiredUnless', { message }),
 
     contains: (param) => (value) =>
-        !helpers.req(value) || value.includes(param),
+        (!helpers.req(value) || value.includes(param)) || t('validation.contains',{ string }),
 
     startsWith: string => value => 
-        !helpers.req(value) || value.startsWith(string) || `${t('validation.startsWith')} ${value}`,
+        (!helpers.req(value) || value.startsWith(string)) || t('validation.startsWith',{ string }),
 
     endsWith: string => value => 
-        !helpers.req(value) || value.endsWith(string) || `${t('validation.endsWith')} ${value}`,
+        (!helpers.req(value) || value.endsWith(string)) || t('validation.endsWith',{ string }),
 
     before_or_equal: toDate => fromDate => 
-        (new Date(toDate) <= new Date(fromDate)) || `${t('validation.before_or_equal')} ${toDate}`,
+        (new Date(toDate) <= new Date(fromDate)) || t('validation.before_or_equal', { toDate }),
 
     after_or_equal: fromDate => toDate => 
-        (new Date(fromDate) <= new Date(toDate)) || `${t('validation.after_or_equal')} ${fromDate}`
+        (new Date(fromDate) <= new Date(toDate)) || t('validation.after_or_equal', { fromDate })
 
   };
 
