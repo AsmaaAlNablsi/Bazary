@@ -1,5 +1,5 @@
 
-export default function permissionTableItems(t) {
+export default function permissionTableItems() {
 
     const cols = [
         { header: 'Name EN', field: 'name_en', cell: (item) => item.name },

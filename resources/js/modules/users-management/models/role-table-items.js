@@ -1,5 +1,5 @@
 
-export default function roleTableItems(t, deleteItem, redirect) {
+export default function roleTableItems(deleteItem, redirect) {
 
     const cols = [
         { header: 'Name EN', field: 'name_en', cell: (item) => item.name },
