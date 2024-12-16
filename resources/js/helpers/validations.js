@@ -46,13 +46,23 @@ export default function useValidations(t) {
     integer: value => 
         validators.integer.$validator(value) || t('validation.integer'),
     
+    decimal: value => 
+        validators.decimal.$validator(value) || t('validation.decimal'),
+    
     between: (min, max) => value =>
       validators.between(min, max).$validator(value) || t('validation.between', { min, max }),
     
-    url: value => validators.url.$validator(value) || t('validation.url'),
+    url: value => 
+        validators.url.$validator(value) || t('validation.url'),
     
     sameAs: comparedValue => value =>
       validators.sameAs(comparedValue).$validator(value) || t('validation.sameAs', {comparedValue}),
+
+    requiredIf: (condition) => value => 
+        validators.requiredIf(condition).$validator(value) || t('validation.requiredIf'),
+
+    requiredUnless: (condition) => value => 
+        validators.requiredUnless(condition).$validator(value) || t('validation.requiredUnless'),
 
     contains: (param) => (value) =>
         !helpers.req(value) || value.includes(param),
