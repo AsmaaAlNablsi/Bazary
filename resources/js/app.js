@@ -21,12 +21,8 @@ const app = createApp(App);
 app.config.globalProperties.$axios = axios;
 
 /* define breadcrumb */
-const breadcrumbs = ref([
-    {
-        title: 'navigation.home',
-        to: '/'
-    }
-]);
+const breadcrumbs = ref([]);
+
 if(!cookie.get('breadcrumbs')) {
     cookie.set('breadcrumbs', breadcrumbs.value);
 } else {

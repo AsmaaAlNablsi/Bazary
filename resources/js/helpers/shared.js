@@ -8,6 +8,8 @@ import store from "@/store/store.js";
 import '../../css/crud.css';
 import '../../css/forms.css';
 import '../../css/modal.css';
+import useValidations from './validations.js'
+
 
 export default function useShared() {
     const {t} = useI18n({})
@@ -42,13 +44,7 @@ export default function useShared() {
     const currentUser = store.state.auth.user;
     const userPermissions = currentUser? currentUser.permissions : [] ;
 
-    const validationRules = {
-        email: value => /.+@.+\..+/.test(value) || t('validation.email'),
-        mobile: value => /^09[0-9]{8}$/.test(value) || t('validation.mobile'),
-        phone: value => /^0[0-9]{9}$/.test(value) || t('validation.phone'),
-        password: value => /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/.test(value) || t('validation.password'),
-        required: value => !!value || t('validation.required')
-    }
+    const validationRules = useValidations(t);
 
     const errorHandle = async (error) => {
         console.log('error')

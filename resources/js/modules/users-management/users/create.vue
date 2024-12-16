@@ -2,7 +2,7 @@
     <v-container v-if="!isLoading">
         <t-breadcrumbs
             :path="router.currentRoute.value.path"
-            :title="router.currentRoute.value.meta.breadcrumb"
+            :title="$t(router.currentRoute.value.meta.breadcrumb)"
         >
         </t-breadcrumbs>
     </v-container>
