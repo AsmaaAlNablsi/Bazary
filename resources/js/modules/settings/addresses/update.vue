@@ -9,7 +9,7 @@
       <v-card-text class="pa-5">
         <v-form
           v-model="valid"
-          v-on:submit.prevent="emit('update', {...updateForm}, 'addresses', false, true)"
+          v-on:submit.prevent="emit('update', {...updateForm}, 'addresses', true)"
         >
           <v-row class="mt-n2">
             <v-col>

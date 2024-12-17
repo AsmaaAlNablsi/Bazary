@@ -4,7 +4,7 @@
             v-model:form="form"
             v-model:valid="valid"
             :validation="validation"
-            @create="saveItem"
+            @create="storeModalItem"
             @cancel="cancel()"
         />
     </t-modal>
@@ -14,7 +14,7 @@
             v-model:form="itemData"
             v-model:valid="valid"
             :validation="validation"
-            @create="updateItem"
+            @update="updateModalItem"
             @cancel="cancel()"
         />
     </t-modal>
@@ -85,8 +85,8 @@ const {
     address,
     showStoreModal,
     showUpdateModal,
-    storeItem,
-    updateItem,
+    storeModalItem,
+    updateModalItem,
     loadParentData,
     deleteItem,
     saveItem,
