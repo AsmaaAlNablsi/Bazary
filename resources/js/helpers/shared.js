@@ -248,6 +248,11 @@ export default function useShared() {
         await dialog.reveal();
     }
 
+    function cancel() {
+        storeModal.value = false;
+        updateModal.value = false;
+    }
+
     const redirect = (routeName, params) => {
         router.push({ name: routeName, params: params });
     }

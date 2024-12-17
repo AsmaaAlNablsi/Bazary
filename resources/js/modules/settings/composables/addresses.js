@@ -31,21 +31,17 @@ export default function useAddresses() {
         saveItem,
         router,
         userPermissions,
-        t
+        t,
+        redirect
     } = useShared()
 
     service.value = AddressesService;
     const address = ref()
-
-    const changeParent = async (id) => {
-        parent.value = id;
-        await loadParentData()
-    }
     
     const {
         cols: addressCols,
         actions: addressActions
-    } = addressTableItems(t, changeParent, showUpdateModal, deleteItem);
+    } = addressTableItems(t, redirect, showUpdateModal, deleteItem);
 
     const form = reactive({
         name_ar: "",
@@ -95,7 +91,6 @@ export default function useAddresses() {
         cancel,
         router,
         userPermissions,
-        changeParent,
         addressCols,
         addressActions,
         form
