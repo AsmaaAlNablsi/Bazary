@@ -227,6 +227,11 @@ export default function useShared() {
         }
     }
 
+    function cancel() {
+        storeModal.value = false;
+        updateModal.value = false;
+    }
+
     const deleteItem = async (id, forParent = false) => {
         const dialog = createConfirmDialog(ConfirmDialog)
         dialog.onConfirm(async () => {
