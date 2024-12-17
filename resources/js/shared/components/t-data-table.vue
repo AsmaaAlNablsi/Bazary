@@ -1,8 +1,8 @@
 <template>
     <data-table
         :rows="rows"
-        :pagination="pagination"
-        :query="query"
+        :pagination="cookie.get(`${service.routPath + queryType}`)?.pagination ?? pagination"
+        :query="cookie.get(`${service.routPath + queryType}`)?.query ?? query"
         :loading="loading"
         hoverable
         filter
@@ -32,11 +32,14 @@
     </data-table>
 </template>
 <script setup>
-import { defineProps } from "vue";
+import { defineProps, inject } from "vue";
+const service = inject('service');
+import cookie from "vue-cookies";
 const props = defineProps([
     "rows",
     "pagination",
     "query",
+    "queryType",
     "loading",
     "cols",
     "actions",

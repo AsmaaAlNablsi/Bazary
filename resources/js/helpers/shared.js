@@ -1,6 +1,6 @@
 import {useRouter} from 'vue-router';
 import {useI18n} from "vue-i18n";
-import {inject, ref} from "vue";
+import {inject, ref, watch} from "vue";
 import {notify} from "@kyvg/vue3-notification";
 import {createConfirmDialog} from "vuejs-confirm-dialog";
 import ConfirmDialog from "@/shared/components/confirm-dialog.vue";
@@ -19,9 +19,9 @@ export default function useShared() {
     const tableData = ref([])
     const service = ref()
     const detailsService = ref()
-    const pagination = ref( cookie.get(`${service.routPath}LoadData`)?.pagination ?? {})
+    const pagination = ref({})
     const valid = ref(false);
-    const query = ref( cookie.get(`${service.routPath}LoadData`)?.query ?? {
+    const query = ref({
         search: '',
         page: 1,
         per_page: 1000,
@@ -34,8 +34,8 @@ export default function useShared() {
     const parentDetails = ref({})
     const parent = ref(null)
     const detailsTableData = ref([])
-    const detailsPagination = ref( cookie.get(`${service.routPath}LoadParentData`)?.pagination ?? {})
-    const detailsQuery = ref( cookie.get(`${service.routPath}LoadParentData`)?.query ?? {
+    const detailsPagination = ref({})
+    const detailsQuery = ref({
         search: '',
         page: 1,
         per_page: 1000,
@@ -62,11 +62,11 @@ export default function useShared() {
     const loadData = async (query) => {
         try {
             if (query === undefined)
-                query = {
+                query = ref({
                     search: '',
                     page: 1,
                     per_page: 10,
-                }
+                })
             const {data: {data, meta}} = await service.value.index({
                 parent_id: '',
                 page: query.page,
@@ -75,7 +75,7 @@ export default function useShared() {
             });
             tableData.value = data
             pagination.value = {...pagination.value, page: query.page, total: meta.total}
-            cookie.set(`${service.routPath}LoadData`, JSON.stringify({pagination: pagination.value, query: query.value}));
+            cookie.set(`${service.value.routPath}LoadData`, JSON.stringify({pagination: pagination.value, query: query}));
             isLoading.value = false
         } catch (error) {
             await errorHandle(error)
@@ -87,11 +87,11 @@ export default function useShared() {
             if (master.value === null)
                 return;
             if (detailsQuery === undefined)
-                detailsQuery = {
+                detailsQuery = ref({
                     search: '',
                     page: 1,
                     per_page: 10,
-                }
+                })
             const {data: {data, meta}} = await detailsService.value.detailsIndex(master.value, {
                 page: detailsQuery.page,
                 size: detailsQuery.per_page,
@@ -99,7 +99,7 @@ export default function useShared() {
             });
             detailsTableData.value = data
             detailsPagination.value = {...detailsPagination.value, page: detailsQuery.page, total: meta.total}
-            cookie.set(`${service.routPath}LoadParentData`, JSON.stringify({pagination: detailsPagination.value, query: detailsQuery.value}));
+            cookie.set(`${service.value.routPath}LoadParentData`, JSON.stringify({pagination: detailsPagination.value, query: detailsQuery}));
             detailsIsLoading.value = false
         } catch (error) {
             await errorHandle(error)

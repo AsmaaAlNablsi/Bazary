@@ -1,4 +1,4 @@
-import {reactive, ref} from 'vue'
+import {reactive, ref, provide} from 'vue'
 import UsersService from "@/services/users-service.js";
 import useShared from "@/helpers/shared.js";
 import RolesService from "@/services/roles-service.js";
@@ -29,6 +29,8 @@ export default function useUsers() {
     } = useShared()
 
     service.value = UsersService;
+    provide('service', service);
+    
     const roles = ref([])
 
     const {
