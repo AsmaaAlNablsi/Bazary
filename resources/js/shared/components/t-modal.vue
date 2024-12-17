@@ -1,15 +1,11 @@
 <template>
- <v-dialog
-     persistent
-      v-model="props.show"
-      :width="props.width">
+ <v-dialog persistent v-model="show" :width="width">
+    <t-loader></t-loader>
       <slot></slot>
  </v-dialog>
 </template>
 <script setup>
-import { defineProps } from "vue";
-const props = defineProps([
-    "show",
-    "width"
-]);
+import TLoader from "@/shared/components/t-loader.vue"; 
+const show = defineModel("show", {type: Boolean});
+const props = defineProps(["width"]);
 </script>

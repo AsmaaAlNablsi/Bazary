@@ -1,16 +1,24 @@
 <template>
-    <create-address
-        :show="storeModal"
-        @create="saveItem"
-        @cancel="cancel()"
-    />
-    <update-address
-        :show="updateModal"
-        :data="itemData"
-        @update="updateItem(itemData,'',true,true)"
-        @cancel="cancel()"
-    />
+    <t-modal v-model:show="storeModal" :width="'70%'">
+        <create-address
+            v-model:form="form"
+            v-model:valid="valid"
+            :validation="validation"
+            @create="saveItem"
+            @cancel="cancel()"
+        />
+    </t-modal>
 
+    <t-modal v-model:show="updateModal" :width="'70%'">
+        <update-address
+            v-model:form="itemData"
+            v-model:valid="valid"
+            :validation="validation"
+            @create="updateItem"
+            @cancel="cancel()"
+        />
+    </t-modal>
+    
     <v-breadcrumbs :items="router.currentRoute.value.meta.breadcrumbs">
         <template v-slot:title="{ item }">
             {{ $t(item.title) }}
@@ -62,6 +70,7 @@ import useAddresses from "../composables/addresses.js";
 import UpdateAddress from "@/modules/settings/addresses/update.vue";
 import CreateAddress from "@/modules/settings/addresses/create.vue";
 import TDataTable from "@/shared/components/t-data-table.vue";
+import TModal from "@/shared/components/t-modal.vue"; 
 
 const {
     parent,
@@ -86,7 +95,10 @@ const {
     userPermissions,
     changeParent,
     addressCols,
-    addressActions
+    addressActions,
+    valid,
+    validation,
+    form
 } = useAddresses()
 
 
