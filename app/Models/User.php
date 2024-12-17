@@ -12,10 +12,11 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, Notifiable, HasRoles, BaseTrait, SoftDeletes;
+    use HasApiTokens, Notifiable, HasRoles, BaseTrait, SoftDeletes, HasFactory;
 
     protected $guard_name = 'web';
     /**

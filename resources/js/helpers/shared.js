@@ -9,6 +9,7 @@ import '../../css/crud.css';
 import '../../css/forms.css';
 import '../../css/modal.css';
 import useValidations from './validations.js'
+import cookie from "vue-cookies";
 
 
 export default function useShared() {
@@ -16,11 +17,11 @@ export default function useShared() {
     const router = useRouter()
     const itemData = ref()
     const tableData = ref([])
-    const pagination = ref({})
     const service = ref()
     const detailsService = ref()
+    const pagination = ref( cookie.get(`${service.routPath}LoadData`)?.pagination ?? {})
     const valid = ref(false);
-    const query = ref({
+    const query = ref( cookie.get(`${service.routPath}LoadData`)?.query ?? {
         search: '',
         page: 1,
         per_page: 1000,
@@ -33,8 +34,8 @@ export default function useShared() {
     const parentDetails = ref({})
     const parent = ref(null)
     const detailsTableData = ref([])
-    const detailsPagination = ref({})
-    const detailsQuery = ref({
+    const detailsPagination = ref( cookie.get(`${service.routPath}LoadParentData`)?.pagination ?? {})
+    const detailsQuery = ref( cookie.get(`${service.routPath}LoadParentData`)?.query ?? {
         search: '',
         page: 1,
         per_page: 1000,
@@ -74,6 +75,7 @@ export default function useShared() {
             });
             tableData.value = data
             pagination.value = {...pagination.value, page: query.page, total: meta.total}
+            cookie.set(`${service.routPath}LoadData`, JSON.stringify({pagination: pagination.value, query: query.value}));
             isLoading.value = false
         } catch (error) {
             await errorHandle(error)
@@ -97,6 +99,7 @@ export default function useShared() {
             });
             detailsTableData.value = data
             detailsPagination.value = {...detailsPagination.value, page: detailsQuery.page, total: meta.total}
+            cookie.set(`${service.routPath}LoadParentData`, JSON.stringify({pagination: detailsPagination.value, query: detailsQuery.value}));
             detailsIsLoading.value = false
         } catch (error) {
             await errorHandle(error)
@@ -292,7 +295,7 @@ export default function useShared() {
         updateItem,
         showUpdateModal,
         showStoreModal,
-        cancel,
+        // cancel,
         detailsLoadData,
         t,
         redirect
