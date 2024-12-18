@@ -1,4 +1,4 @@
-import {reactive, ref, provide} from 'vue'
+import {reactive, ref} from 'vue'
 import AddressesService from "@/services/addresses-service.js";
 import useShared from "@/helpers/shared.js";
 import addressTableItems from '../models/address-table-items';
@@ -33,7 +33,6 @@ export default function useAddresses() {
     } = useShared()
 
     service.value = AddressesService;
-    provide('service', service);
 
     const address = ref()
 

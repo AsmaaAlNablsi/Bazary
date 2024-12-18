@@ -1,6 +1,6 @@
 import {useRouter} from 'vue-router';
 import {useI18n} from "vue-i18n";
-import {inject, ref, watch} from "vue";
+import {inject, ref, provide} from "vue";
 import {notify} from "@kyvg/vue3-notification";
 import {createConfirmDialog} from "vuejs-confirm-dialog";
 import ConfirmDialog from "@/shared/components/confirm-dialog.vue";
@@ -18,6 +18,7 @@ export default function useShared() {
     const itemData = ref()
     const tableData = ref([])
     const service = ref()
+    provide('service', service);
     const detailsService = ref()
     const pagination = ref({})
     const valid = ref(false);
