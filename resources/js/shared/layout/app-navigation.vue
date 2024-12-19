@@ -88,6 +88,20 @@
                 </v-list-item>
             </v-list-group>
         </v-list>
+        <div class="nav-footer">
+                <v-divider :thickness="2" class="mb-3 mt-2"></v-divider>
+                <div class="nav-footer-content font-weight-bold">
+                    <a href="https://tatweer.sy" target="_blank">
+                        <div>
+                            {{ $t("navigation.powered_by") }}
+                            <!-- <span class="tw-footer-span">{{ $t('navigation.tatweer') }}</span> -->
+                        </div>
+                        <div class="logo-img">
+                            <img src="@/assets/logo/tatweer-logo.png" />
+                        </div>
+                    </a>
+                </div>
+            </div>
     </v-navigation-drawer>
 </template>
 
