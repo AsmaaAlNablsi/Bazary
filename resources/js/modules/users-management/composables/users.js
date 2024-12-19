@@ -29,6 +29,7 @@ export default function useUsers() {
     } = useShared()
 
     service.value = UsersService;
+
     const roles = ref([])
 
     const {

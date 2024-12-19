@@ -1,6 +1,6 @@
 import {useRouter} from 'vue-router';
 import {useI18n} from "vue-i18n";
-import {inject, ref} from "vue";
+import {inject, ref, provide} from "vue";
 import {notify} from "@kyvg/vue3-notification";
 import {createConfirmDialog} from "vuejs-confirm-dialog";
 import ConfirmDialog from "@/shared/components/confirm-dialog.vue";
@@ -9,6 +9,7 @@ import '../../css/crud.css';
 import '../../css/forms.css';
 import '../../css/modal.css';
 import useValidations from './validations.js'
+import cookie from "vue-cookies";
 
 
 export default function useShared() {
@@ -16,9 +17,10 @@ export default function useShared() {
     const router = useRouter()
     const itemData = ref()
     const tableData = ref([])
-    const pagination = ref({})
     const service = ref()
+    provide('service', service);
     const detailsService = ref()
+    const pagination = ref({})
     const valid = ref(false);
     const query = ref({
         search: '',
@@ -61,11 +63,11 @@ export default function useShared() {
     const loadData = async (query) => {
         try {
             if (query === undefined)
-                query = {
+                query = ref({
                     search: '',
                     page: 1,
                     per_page: 10,
-                }
+                })
             const {data: {data, meta}} = await service.value.index({
                 parent_id: '',
                 page: query.page,
@@ -74,6 +76,7 @@ export default function useShared() {
             });
             tableData.value = data
             pagination.value = {...pagination.value, page: query.page, total: meta.total}
+            cookie.set(`${service.value.routPath}LoadData`, JSON.stringify({pagination: pagination.value, query: query}));
             isLoading.value = false
         } catch (error) {
             await errorHandle(error)
@@ -85,11 +88,11 @@ export default function useShared() {
             if (master.value === null)
                 return;
             if (detailsQuery === undefined)
-                detailsQuery = {
+                detailsQuery = ref({
                     search: '',
                     page: 1,
                     per_page: 10,
-                }
+                })
             const {data: {data, meta}} = await detailsService.value.detailsIndex(master.value, {
                 page: detailsQuery.page,
                 size: detailsQuery.per_page,
@@ -97,6 +100,7 @@ export default function useShared() {
             });
             detailsTableData.value = data
             detailsPagination.value = {...detailsPagination.value, page: detailsQuery.page, total: meta.total}
+            cookie.set(`${service.value.routPath}LoadParentData`, JSON.stringify({pagination: detailsPagination.value, query: detailsQuery}));
             detailsIsLoading.value = false
         } catch (error) {
             await errorHandle(error)
@@ -301,7 +305,7 @@ export default function useShared() {
         updateItem,
         showUpdateModal,
         showStoreModal,
-        cancel,
+        // cancel,
         detailsLoadData,
         t,
         redirect
