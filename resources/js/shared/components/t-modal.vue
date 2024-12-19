@@ -1,15 +1,9 @@
 <template>
- <v-dialog
-     persistent
-      v-model="props.show"
-      :width="props.width">
+ <v-dialog persistent v-model="show" :width="width">
       <slot></slot>
  </v-dialog>
 </template>
 <script setup>
-import { defineProps } from "vue";
-const props = defineProps([
-    "show",
-    "width"
-]);
+const show = defineModel("show", {type: Boolean});
+const props = defineProps(["width"]);
 </script>

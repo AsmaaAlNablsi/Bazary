@@ -5,11 +5,12 @@ const AddressDetail = () => import("@/modules/settings/addresses/details.vue");
 
 const SettingsRoutes = [
     {
-        path: '/addresses',
+        path: '/addresses/:id?',
         name: 'addresses',
         component: AddressesIndex,
+        props: true,
         meta: {
-            breadcrumb: 'addresses'
+            breadcrumb: 'addresses.addresses'
         }
     },
     {

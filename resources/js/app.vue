@@ -9,7 +9,7 @@
             <div class="main-div">
                 <v-card width="95%" class="pa-5 mx-auto layout-card" color="white" outlined>
                     <t-loader></t-loader>
-                    <router-view></router-view>
+                    <router-view :key="$route.fullPath"></router-view>
                 </v-card>
             </div>
         </v-main>
