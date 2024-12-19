@@ -1,38 +1,33 @@
 <template>
-    <create-address
-        :show="storeModal"
-        @create="saveItem"
-        @cancel="cancel()"
-    />
-    <update-address
-        :show="updateModal"
-        :data="itemData"
-        @update="updateItem(itemData,'',true,true)"
-        @cancel="cancel()"
-    />
+    <t-modal v-model:show="storeModal" :width="'70%'">
+        <create-address
+            v-model:form="form"
+            v-model:valid="valid"
+            :validation="validation"
+            @create="storeModalItem"
+            @cancel="cancel()"
+        />
+    </t-modal>
 
-    <v-breadcrumbs :items="router.currentRoute.value.meta.breadcrumbs">
-        <template v-slot:title="{ item }">
-            {{ $t(item.title) }}
-        </template>
-        <v-a class="clickable" @click="changeParent(null)">
-            {{ $t('addresses.addresses') }}
-        </v-a>
-        <div class="clickable" v-if="parent">
-            <v-row>
-                <p class="mx-4">
-                    /
-                </p>
-                <v-a v-if="$t('locale.lang')==='ar'" @click="changeParent(parentDetails.parent_id)">
-                    {{ parentDetails.name_ar }}
-                </v-a>
-                <v-a v-if="$t('locale.lang')==='en'" @click="changeParent(parentDetails.parent_id)">
-                    {{ parentDetails.name_en }}
-                </v-a>
-            </v-row>
-        </div>
-    </v-breadcrumbs>
-    <v-container>
+    <t-modal v-model:show="updateModal" :width="'70%'">
+        <update-address
+            v-model:form="itemData"
+            v-model:valid="valid"
+            :validation="validation"
+            @update="updateModalItem"
+            @cancel="cancel()"
+        />
+    </t-modal>
+    
+    <v-container v-if="!isLoading">
+        <t-breadcrumbs
+            :path="router.currentRoute.value.path"
+            :title="itemData?.name_ar ?? $t(router.currentRoute.value.meta.breadcrumb)"
+            :reset="parent ? false : true"
+        >
+        </t-breadcrumbs>
+    </v-container>
+    <v-container v-if="!isLoading">
         <h3>{{ $t('addresses.addresses') }}</h3>
         <v-divider :thickness="2" class="mt-3 mb-5"></v-divider>
         <v-btn
@@ -50,7 +45,6 @@
                 :userPermissions="userPermissions"
                 :cols="addressCols"
                 :actions="addressActions"
-                @loadData="loadParentData"
             >
             </t-data-table>
         </div>
@@ -62,6 +56,9 @@ import useAddresses from "../composables/addresses.js";
 import UpdateAddress from "@/modules/settings/addresses/update.vue";
 import CreateAddress from "@/modules/settings/addresses/create.vue";
 import TDataTable from "@/shared/components/t-data-table.vue";
+import TBreadcrumbs from "@/shared/components/t-breadcrumbs.vue";
+import TModal from "@/shared/components/t-modal.vue"; 
+import { onMounted } from "vue";
 
 const {
     parent,
@@ -73,22 +70,32 @@ const {
     storeModal,
     cancel,
     itemData,
-    address,
     showStoreModal,
-    showUpdateModal,
-    storeItem,
-    updateItem,
+    storeModalItem,
+    updateModalItem,
     loadParentData,
-    deleteItem,
-    saveItem,
-    parentDetails,
     router,
     userPermissions,
-    changeParent,
     addressCols,
-    addressActions
+    addressActions,
+    valid,
+    validation,
+    form,
+    address,
+    getItem,
 } = useAddresses()
 
-
+const props = defineProps({
+    id: {
+        required: true,
+        type: String
+    }
+})
+onMounted(async () => {
+    parent.value = props.id;
+    if(parent.value)
+        await getItem(parent.value, true);
+    await loadParentData()
+})
 
 </script>

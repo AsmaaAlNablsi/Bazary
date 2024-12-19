@@ -21,6 +21,7 @@
                 :rows="tableData"
                 :pagination="pagination"
                 :query="query"
+                :queryType="'LoadData'"
                 :loading="isLoading"
                 :userPermissions="userPermissions"
                 :cols="userCols"

@@ -26,6 +26,7 @@
                 :cols="roleCols"
                 :actions="roleActions"
                 @loadData="loadData"
+                :queryType="'LoadData'"
             >
             </t-data-table>
         </div>

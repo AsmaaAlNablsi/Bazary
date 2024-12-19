@@ -10,6 +10,12 @@
     height: calc(100% - 6.5rem) !important;
 }
 
+.v-list {
+    min-height: 70vh !important;
+    width: 100%;
+    overflow-y: auto !important;
+}
+
 .v-list-item.v-list-item--link.v-list-item--nav {
     padding: 0 1.2rem;
     min-height: 2.4rem;
@@ -82,4 +88,30 @@
     background-color: #eae8ff !important;
     border-radius: 25px !important;
     color: #6b5dd1 !important;
+}
+
+.nav-footer-content {
+    display: flex;
+    justify-content: center;
+}
+
+.nav-footer-content a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+}
+
+.nav-footer-content a div {
+    text-align: center;
+    font-size: x-small;
+    padding: 0 1px;
+}
+
+.nav-footer-content .tw-footer-span {
+    color: var(--tw-tatweer-color);
+}
+
+.nav-footer-content .logo-img img{
+    width: 50px;
 }

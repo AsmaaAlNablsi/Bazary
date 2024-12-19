@@ -1,5 +1,5 @@
 
-export default function addressTableItems(t, changeParent, showUpdateModal, deleteItem) {
+export default function addressTableItems(t, redirect, showUpdateModal, deleteItem) {
 
     const cols = [
         { header: 'Name AR', field: 'name_ar', cell: (item) => item.name_ar },
@@ -13,7 +13,7 @@ export default function addressTableItems(t, changeParent, showUpdateModal, dele
             perm: 'addresses/details',
             class: 'crud-action-btn',
             icon: "mdi-eye",
-            action: (item) => changeParent(item.id)
+            action: (item) => redirect('addresses', { id: item.id })
         },
         {
             header: 'update',
