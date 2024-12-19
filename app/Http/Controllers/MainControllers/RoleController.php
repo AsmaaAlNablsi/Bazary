@@ -29,7 +29,7 @@ class RoleController extends Controller
     public function index(RoleIndexRequest $request)
     {
         $query = Role::query();
-        if (!is_null($request->parent_id))
+        if ($request->parent_id)
             $query = $query->join('model_has_roles', 'model_has_roles.role_id', 'roles.id')
                 ->whereModelId($request->parent_id);
 
