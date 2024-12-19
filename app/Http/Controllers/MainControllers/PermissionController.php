@@ -17,7 +17,7 @@ class PermissionController extends Controller
     public function index(IndexPermissionRequest $request)
     {
         $query = Permission::query();
-        if (!is_null($request->parent_id))
+        if ($request->parent_id)
             $query = $query->join('role_has_permissions', 'role_has_permissions.permission_id', 'permissions.id')
                 ->whereRoleId($request->parent_id);
 

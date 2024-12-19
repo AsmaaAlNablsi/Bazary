@@ -28,7 +28,7 @@ class AddressController extends Controller
     public function index(AddressIndexRequest $request)
     {
         $query = Address::query();
-        if (is_null($request->parent_id))
+        if (!$request->parent_id)
             $query = $query->whereNull('parent_id');
         else
             $query = $query->where('parent_id', $request->parent_id);
