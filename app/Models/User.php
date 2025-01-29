@@ -29,8 +29,7 @@ class User extends Authenticatable
         'last_name',
         'is_active',
         'email',
-        'password',
-        'mobile'
+        'password'
     ];
 
     /**
@@ -65,7 +64,6 @@ class User extends Authenticatable
                 'first_name' => $request->first_name,
                 'last_name' => $request->last_name,
                 'email' => $request->email,
-                'mobile' => $request->mobile,
                 'password' => Hash::make($request->password)
             ]);
             $user->syncRoles($request->roles);

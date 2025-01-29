@@ -17,7 +17,6 @@ return new class extends Migration {
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('mobile')->unique()->nullable();
             $table->string('email')->unique();
             $table->boolean('is_active')->default(true);
             $table->string('password');
