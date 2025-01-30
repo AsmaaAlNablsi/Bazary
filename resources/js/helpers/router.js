@@ -2,6 +2,7 @@ import {createRouter, createWebHistory} from 'vue-router'
 import AuthRoutes from "../modules/authentication/auth-routes.js";
 import DashboardRoutes from "../modules/dashboard/dashboard-routes.js";
 import UsersManagementRoutes from "../modules/users-management/users-management-routes.js";
+import ServiceManagementRoutes from "../modules/services-management/services-management-routes.js";
 import SettingsRoutes from "../modules/settings/settings-routes.js";
 import store from "@/store/store.js";
 import {notify} from "@kyvg/vue3-notification";
@@ -12,6 +13,7 @@ const routes = [
     ...UsersManagementRoutes,
     ...DashboardRoutes,
     ...AuthRoutes,
+    ...ServiceManagementRoutes,
     {
         path: "/:catchAll(.*)",
         name: "NotFound",
