@@ -12,6 +12,7 @@ use App\Http\Controllers\MobileControllers\Auth\RegistrationController;
 use App\Http\Controllers\MobileControllers\GeneralCodeController as MobileGeneralCodeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ServicesManagementControllers\SpecialtyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,7 +44,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/roles', RoleController::class);
     Route::post('/roles/assignPermissions/{role}', [RoleController::class, 'assignPermissions']);
 
-    Route::apiResource('/specialties', AddressController::class);
+    Route::apiResource('/specialties', SpecialtyController::class);
 
 
 });
