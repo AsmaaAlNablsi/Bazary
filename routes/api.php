@@ -36,42 +36,16 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/users', UsersController::class);
     Route::get('/users/toggle-activation/{user}', [UsersController::class, 'toggleActivation']);
 
-    Route::apiResource('general-codes', GeneralCodeController::class);
-
-    Route::prefix('general-codes')->group(function () {
-        Route::controller(GeneralCodeController::class)->group(function () {
-            Route::get('/toggle-activation/{generalCode}', 'toggleActivation');
-            Route::get('/codes/{code}', 'codes');
-
-        });
-    });
-
     Route::apiResource('/address', AddressController::class);
     Route::get('address/toggle-activation/{address}', [AddressController::class, 'toggleActivation']);
 
     Route::get('/permissions', [PermissionController::class, 'index']);
     Route::apiResource('/roles', RoleController::class);
     Route::post('/roles/assignPermissions/{role}', [RoleController::class, 'assignPermissions']);
+
+    Route::apiResource('/specialties', AddressController::class);
+
+
 });
 
 Route::get('lang', [Controller::class, 'switchLang']);
-
-Route::prefix('mobile')->group(function () {
-    Route::controller(RegistrationController::class)
-        ->group(function () {
-            Route::middleware('throttle:' . env('REQUESTS_PER_MENUTE') . ',1')
-                ->post('/generate-code', 'generateActivationCode');
-            Route::post('/verify-code', 'verifyActivation');
-            Route::post('/register', 'register');
-        });
-    Route::controller(MobileGeneralCodeController::class)
-        ->group(function () {
-            Route::get('/general-codes', 'index');
-        });
-    Route::controller(MobileAuthenticationController::class)
-        ->group(function () {
-            Route::post('login', 'login');
-            Route::get('logout', 'logout')->middleware('auth:sanctum');
-        });
-});
-
