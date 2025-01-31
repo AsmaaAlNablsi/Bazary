@@ -24,6 +24,8 @@
         "real_estates_management": "إدارة العقارات",
         "real_estates_map": "مواقع العقارات",
         "powered_by": "مُشغَّل من قبل",
+        "services_management": "إدارة الخدمات",
+        "specialties": "التخصصات",
         "tatweer": "تَطوير"
     },
     "users": {
@@ -39,6 +41,19 @@
         "please_select_roles": "يرجى اختيار الأدوار",
         "is_active": "فعال"
     },
+
+    "specialties": {
+        "specialties": "التخصصات",
+        "details": "تفاصيل التخصص",
+        "edit": "تعديل التخصص",
+        "add": "إضافة تخصص جديد",
+        "name_ar": "اسم التخصص بالعربية",
+        "name_en": "اسم التخصص بالانكليزية",
+        "code": "كود التخصص",
+        "details_ar": "تفاصيل التخصص بالعربية",
+        "details_en": "تفاصيل التخصص بالانكليزية"
+    },
+    
     "owners": {
         "owners": "العملاء",
         "details": "تفاصيل العميل",
