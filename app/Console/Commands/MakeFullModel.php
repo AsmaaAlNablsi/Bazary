@@ -13,10 +13,8 @@ class MakeFullModel extends Command
     {
         $name = $this->argument('name');
 
-        // Generate model with -a flag
         $this->call('make:model', ['name' => $name, '-m' => true, '-c' => true, '-r' => true, '-s' => true, '--policy' => true]);
 
-        // Generate API resource
         $this->call('make:resource', ['name' => $name . 'Resource']);
         
         $this->call('make:request', [
