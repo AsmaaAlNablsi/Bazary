@@ -28,31 +28,6 @@
 
             <v-list-group
                 v-if="
-                    currentUser.permissions.includes('specialties')
-                "
-                value="specialties_management"
-            >
-                <template v-slot:activator="{ props }">
-                    <v-list-item v-bind="props">
-                        <img src="@/assets/icons/ic_Customer_management.svg" />
-                        <span class="px-3">
-                            {{ $t("navigation.services_management") }}</span
-                        >
-                    </v-list-item>
-                </template>
-                <v-list-item
-                    v-if="currentUser.permissions.includes('specialties')"
-                    to="/specialties"
-                >
-                    <span class="px-3">
-                        {{ $t("navigation.specialties") }}</span
-                    >
-                </v-list-item>
-
-            </v-list-group>
-
-            <v-list-group
-                v-if="
                     currentUser.permissions.includes('users') ||
                     currentUser.permissions.includes('roles')
                 "
