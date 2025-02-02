@@ -62,12 +62,13 @@ export default function useShared() {
 
     const loadData = async (query) => {
         try {
+            isLoading.value = true;
             if (query === undefined)
-                query = ref({
+                query = {
                     search: '',
                     page: 1,
                     per_page: 10,
-                })
+                }
             const {data: {data, meta}} = await service.value.index({
                 parent_id: '',
                 page: query.page,
@@ -79,6 +80,7 @@ export default function useShared() {
             cookie.set(`${service.value.routPath}LoadData`, JSON.stringify({pagination: pagination.value, query: query}));
             isLoading.value = false
         } catch (error) {
+            isLoading.value = false
             await errorHandle(error)
         }
     }

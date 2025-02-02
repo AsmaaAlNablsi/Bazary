@@ -24,6 +24,7 @@
         "real_estates_management": "إدارة العقارات",
         "real_estates_map": "مواقع العقارات",
         "powered_by": "مُشغَّل من قبل",
+        "services_management": "إدارة الخدمات",
         "tatweer": "تَطوير"
     },
     "users": {
@@ -39,6 +40,8 @@
         "please_select_roles": "يرجى اختيار الأدوار",
         "is_active": "فعال"
     },
+
+    
     "owners": {
         "owners": "العملاء",
         "details": "تفاصيل العميل",
