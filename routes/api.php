@@ -13,6 +13,7 @@ use App\Http\Controllers\MobileControllers\GeneralCodeController as MobileGenera
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -42,8 +43,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/permissions', [PermissionController::class, 'index']);
     Route::apiResource('/roles', RoleController::class);
     Route::post('/roles/assignPermissions/{role}', [RoleController::class, 'assignPermissions']);
-
-    Route::apiResource('/specialties', AddressController::class);
 
 
 });
