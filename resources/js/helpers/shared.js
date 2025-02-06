@@ -1,6 +1,6 @@
 import {useRouter} from 'vue-router';
 import {useI18n} from "vue-i18n";
-import {inject, ref, provide} from "vue";
+import {inject, ref, provide, watch} from "vue";
 import {notify} from "@kyvg/vue3-notification";
 import {createConfirmDialog} from "vuejs-confirm-dialog";
 import ConfirmDialog from "@/shared/components/confirm-dialog.vue";
@@ -56,7 +56,14 @@ export default function useShared() {
             await router.push({name: 'login'});
         }else if(error.response.status === unAuthorized){
             notify(t('unauthorized'));
-        } else
+        } else if(error.response.data.errors && Object.keys(error.response.data.errors).length > 0) {
+            for (const [key, value] of Object.entries(error.response.data.errors)) {
+                value.forEach(element => {
+                notify(element);
+                });
+            }
+        }
+            else
             notify(error.response.data.message);
     }
 
@@ -131,6 +138,7 @@ export default function useShared() {
                 parentDetails.value = parentData;
 
             pagination.value = {...pagination.value, page: query.page, total: meta.total}
+            cookie.set(`${service.value.routPath}LoadParentData`, JSON.stringify({pagination: pagination.value, query: query}));
             isLoading.value = false
         } catch (error) {
             await errorHandle(error)
@@ -307,7 +315,7 @@ export default function useShared() {
         updateItem,
         showUpdateModal,
         showStoreModal,
-        // cancel,
+        cancel,
         detailsLoadData,
         t,
         redirect

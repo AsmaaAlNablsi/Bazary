@@ -4,7 +4,7 @@
             v-model:form="form"
             v-model:valid="valid"
             :validation="validation"
-            @create="storeModalItem"
+            @create="parent.value ? storeModalItemForParent() : storeModalItem()"
             @cancel="cancel()"
         />
     </t-modal>
@@ -14,7 +14,7 @@
             v-model:form="itemData"
             v-model:valid="valid"
             :validation="validation"
-            @update="updateModalItem"
+            @update="parent.value ? updateModalItemForParent() : updateModalItem()"
             @cancel="cancel()"
         />
     </t-modal>
@@ -41,9 +41,11 @@
                 :rows="tableData"
                 :pagination="pagination"
                 :query="query"
+                :queryType="parent ? 'LoadParentData' : 'LoadData'"
                 :loading="isLoading"
                 :userPermissions="userPermissions"
                 :cols="addressCols"
+                @loadData="loadAddresses"
                 :actions="addressActions"
             >
             </t-data-table>
@@ -58,7 +60,8 @@ import CreateAddress from "@/modules/settings/addresses/create.vue";
 import TDataTable from "@/shared/components/t-data-table.vue";
 import TBreadcrumbs from "@/shared/components/t-breadcrumbs.vue";
 import TModal from "@/shared/components/t-modal.vue"; 
-import { onMounted } from "vue";
+import { defineProps, inject, onMounted } from "vue";
+import cookie from "vue-cookies";
 
 const {
     parent,
@@ -72,8 +75,11 @@ const {
     itemData,
     showStoreModal,
     storeModalItem,
+    storeModalItemForParent,
     updateModalItem,
+    updateModalItemForParent,
     loadParentData,
+    loadData,
     router,
     userPermissions,
     addressCols,
@@ -81,6 +87,7 @@ const {
     valid,
     validation,
     form,
+    service,
     address,
     getItem,
 } = useAddresses()
@@ -91,11 +98,23 @@ const props = defineProps({
         type: String
     }
 })
+
+const loadAddresses = async (query) => {
+    loadParentData(query)
+}
+
 onMounted(async () => {
     parent.value = props.id;
+    let queryType = parent.value ? 'LoadParentData' : 'LoadData';
     if(parent.value)
         await getItem(parent.value, true);
-    await loadParentData()
+    else if(cookie.get(`${service.value.routPath + queryType}`).query.page == 1){
+        pagination.value = cookie.get(`${service.value.routPath + queryType}`)?.pagination ?? pagination.value;
+        query.value = cookie.get(`${service.value.routPath + queryType}`)?.query ?? query.value;
+    await loadAddresses(query.value)
+}
+
+
 })
 
 </script>
