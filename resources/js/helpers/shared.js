@@ -138,7 +138,8 @@ export default function useShared() {
                 parentDetails.value = parentData;
 
             pagination.value = {...pagination.value, page: query.page, total: meta.total}
-            cookie.set(`${service.value.routPath}LoadParentData`, JSON.stringify({pagination: pagination.value, query: query}));
+            cookie.set(`${service.value.routPath}${parent.value ? 'LoadParentData' : 'LoadData'}`,
+                 JSON.stringify({pagination: pagination.value, query: query}));
             isLoading.value = false
         } catch (error) {
             await errorHandle(error)

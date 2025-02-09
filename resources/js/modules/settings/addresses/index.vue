@@ -41,7 +41,7 @@
                 :rows="tableData"
                 :pagination="pagination"
                 :query="query"
-                :queryType="parent ? 'LoadParentData' : 'LoadData'"
+                :queryType="queryType"
                 :loading="isLoading"
                 :userPermissions="userPermissions"
                 :cols="addressCols"
@@ -60,7 +60,7 @@ import CreateAddress from "@/modules/settings/addresses/create.vue";
 import TDataTable from "@/shared/components/t-data-table.vue";
 import TBreadcrumbs from "@/shared/components/t-breadcrumbs.vue";
 import TModal from "@/shared/components/t-modal.vue"; 
-import { defineProps, inject, onMounted } from "vue";
+import { defineProps, inject, onMounted, ref } from "vue";
 import cookie from "vue-cookies";
 
 const {
@@ -98,6 +98,7 @@ const props = defineProps({
         type: String
     }
 })
+const queryType = ref(null);
 
 const loadAddresses = async (query) => {
     loadParentData(query)
@@ -105,12 +106,13 @@ const loadAddresses = async (query) => {
 
 onMounted(async () => {
     parent.value = props.id;
-    let queryType = parent.value ? 'LoadParentData' : 'LoadData';
+    queryType.value = parent.value ? 'LoadParentData' : 'LoadData';
+    
     if(parent.value)
         await getItem(parent.value, true);
-    else if(cookie.get(`${service.value.routPath + queryType}`).query.page == 1){
-        pagination.value = cookie.get(`${service.value.routPath + queryType}`)?.pagination ?? pagination.value;
-        query.value = cookie.get(`${service.value.routPath + queryType}`)?.query ?? query.value;
+    else {
+        pagination.value = cookie.get(`${service.value.routPath + queryType.value}`)?.pagination ?? pagination.value;
+        query.value = cookie.get(`${service.value.routPath + queryType.value}`)?.query ?? query.value;
     await loadAddresses(query.value)
 }
 
