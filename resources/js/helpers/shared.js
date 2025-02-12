@@ -1,6 +1,6 @@
 import {useRouter} from 'vue-router';
 import {useI18n} from "vue-i18n";
-import {inject, ref, provide} from "vue";
+import {inject, ref, provide, watch} from "vue";
 import {notify} from "@kyvg/vue3-notification";
 import {createConfirmDialog} from "vuejs-confirm-dialog";
 import ConfirmDialog from "@/shared/components/confirm-dialog.vue";
@@ -57,18 +57,26 @@ export default function useShared() {
             await router.push({name: 'login'});
         }else if(error.response.status === unAuthorized){
             notify(t('unauthorized'));
-        } else
+        } else if(error.response.data.errors && Object.keys(error.response.data.errors).length > 0) {
+            for (const [key, value] of Object.entries(error.response.data.errors)) {
+                value.forEach(element => {
+                notify(element);
+                });
+            }
+        }
+            else
             notify(error.response.data.message);
     }
 
     const loadData = async (query) => {
         try {
+            isLoading.value = true;
             if (query === undefined)
-                query = ref({
+                query = {
                     search: '',
                     page: 1,
                     per_page: 10,
-                })
+                }
             const {data: {data, meta}} = await service.value.index({
                 parent_id: '',
                 page: query.page,
@@ -80,6 +88,7 @@ export default function useShared() {
             cookie.set(`${service.value.routPath}LoadData`, JSON.stringify({pagination: pagination.value, query: query}));
             isLoading.value = false
         } catch (error) {
+            isLoading.value = false
             await errorHandle(error)
         }
     }
@@ -130,6 +139,8 @@ export default function useShared() {
                 parentDetails.value = parentData;
 
             pagination.value = {...pagination.value, page: query.page, total: meta.total}
+            cookie.set(`${service.value.routPath}${parent.value ? 'LoadParentData' : 'LoadData'}`,
+                 JSON.stringify({pagination: pagination.value, query: query}));
             isLoading.value = false
         } catch (error) {
             await errorHandle(error)
@@ -307,7 +318,7 @@ export default function useShared() {
         updateItem,
         showUpdateModal,
         showStoreModal,
-        // cancel,
+        cancel,
         detailsLoadData,
         t,
         redirect

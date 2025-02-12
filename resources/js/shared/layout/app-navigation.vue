@@ -25,6 +25,7 @@
                 <img src="@/assets/icons/ic_dashboard.svg" />
                 <span class="px-3"> {{ $t("navigation.dashboard") }}</span>
             </v-list-item>
+
             <v-list-group
                 v-if="
                     currentUser.permissions.includes('users') ||
