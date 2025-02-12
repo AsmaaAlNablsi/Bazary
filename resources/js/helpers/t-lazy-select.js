@@ -31,6 +31,8 @@ export function useAutocomplete(apiEndpoint, itemData = ref(0), additionalParams
   
         const { data, meta } = response.data;
 
+        if(emptyItems)
+          items.value = [];
           items.value = [...items.value, ...data];
           totalPages.value = meta.last_page;
           currentPage.value++;
@@ -43,8 +45,9 @@ export function useAutocomplete(apiEndpoint, itemData = ref(0), additionalParams
   const getItems = async (newQuery) => {
     searchQuery.value = newQuery;
     currentPage.value = 1;
-    items.value = [];
-    loadMoreFromApi(true);
+    if((!newQuery) || newQuery.length > 3){
+      loadMoreFromApi(true);
+    }
   };
 
   return {

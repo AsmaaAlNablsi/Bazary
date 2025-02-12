@@ -10,10 +10,10 @@
         :loading="select.loading.value"
         :rules="validation"
         :multiple="multiple"
-        chips
-        closable-chips
+        :chips="chips"
+        :closable-chips="closableChips"
         auto-select-first="exact"
-        @update:search="setTimeout(() => {select.getItems}, 2000);"
+        @update:search="serverSearch ? select.getItems : true"
         @click="requestOnClick ? select.getItems() : true"
         :class="class"
     >
@@ -28,7 +28,7 @@
     </v-autocomplete>
 </template>
 <script setup>
-import { useAutocomplete } from "@/helpers/autocomplete";
+import { useLazySelect } from "@/helpers/t-lazy-select.js";
 import { onMounted, ref } from "vue";
 
 const props = defineProps({
@@ -39,6 +39,24 @@ const props = defineProps({
     uri: {
         required: true,
         type: String,
+    },
+    chips: {
+        type: Boolean,
+        default() {
+            return false
+        }
+    },
+    closableChips: {
+        type: Boolean,
+        default() {
+            return false
+        }
+    },
+    serverSearch: {
+        type: Boolean,
+        default() {
+            return false
+        }
     },
     label: {
         required: true,
@@ -64,16 +82,16 @@ const props = defineProps({
             return ''
         }
     },
-    class: {
-        type: String,
-        default() {
-      return ''
-    }
-    },
     multiple: {
         type: Boolean,
         default() {
       return false
+    }
+    },
+    class: {
+        type: String,
+        default() {
+      return ''
     }
     },
     returnObject: {
@@ -84,10 +102,11 @@ const props = defineProps({
     },
 });
 
-const select = useAutocomplete(props.uri);
+const select = useLazySelect(props.uri);
 
 onMounted( () => {
      select.getItems();
+     props.class = multiple ? props.class : `chips-unset-style ${props.class}`
 });
 
 const selectedItems = defineModel("selectedItems");

@@ -49,6 +49,7 @@
                 :rows="tableData"
                 :pagination="pagination"
                 :query="query"
+                :queryType="'LoadParentData'"
                 :loading="isLoading"
                 :userPermissions="userPermissions"
                 :cols="permissionCols"
