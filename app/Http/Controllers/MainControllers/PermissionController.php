@@ -16,13 +16,13 @@ class PermissionController extends Controller
 
     public function index(IndexPermissionRequest $request)
     {
-        $query = Permission::query();
+        $query = Permission::search($request->search);
         if ($request->parent_id)
-            $query = $query->join('role_has_permissions', 'role_has_permissions.permission_id', 'permissions.id')
-                ->whereRoleId($request->parent_id);
+            $query = $query->query(function ($subQuery) use ($request) {
+                $subQuery->join('role_has_permissions', 'role_has_permissions.permission_id', 'permissions.id')
+                    ->whereRoleId($request->parent_id);
+            });
 
-        $query = self::generalSearch(new Permission(), $query, $request);
-
-        return new PermissionResource($query->paginate($request->limit, ['*'], 'page', $request->offset));
+        return new PermissionResource($query->paginate($request->limit, 'page', $request->offset));
     }
 }

@@ -7,11 +7,12 @@ use App\Http\Requests\RoleRequests\UpdateRoleRequest;
 use App\Traits\BaseTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
+use Laravel\Scout\Searchable;
 use Spatie\Permission\Models\Role as SpatieRole;
 
 class Role extends SpatieRole
 {
-    use SoftDeletes, BaseTrait;
+    use SoftDeletes, BaseTrait, Searchable;
 
     public $guard_name = 'web';
 
@@ -55,5 +56,18 @@ class Role extends SpatieRole
             DB::rollBack();
             throw $exception;
         }
+    }
+
+    /**
+     * Define search keys
+     * 
+     * @return array
+     */
+    public function toSearchableArray(): array
+    {
+        return [
+            'name' => '',
+            'name_ar' => ''
+        ];
     }
 }
