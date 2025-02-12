@@ -120,4 +120,13 @@ img {
     display: none !important;
 }
 
+.chips-unset-style .v-chip--variant-tonal .v-chip__underlay{
+    background:unset;
+
+}
+
+.chips-unset-style .v-chip{
+    border-radius: 0 !important;
+
+}
 
