@@ -4,6 +4,7 @@ import useShared from "@/helpers/shared.js";
 import PermissionsService from "@/services/permissions-service.js";
 import roleTableItems from "../models/role-table-items";
 import permissionTableItems from "../models/permission-table-items";
+import cookie from "vue-cookies";
 
 export default function useRoles() {
 
@@ -103,7 +104,8 @@ export default function useRoles() {
 
                 tableData.value = data
                 pagination.value = {...pagination.value, page: query.page, total: meta.total}
-                isLoading.value = false
+            cookie.set(`${service.value.routPath}LoadParentData`, JSON.stringify({pagination: pagination.value, query: query}));
+            isLoading.value = false
             }
 
         } catch (error) {

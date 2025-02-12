@@ -34,4 +34,10 @@ export default defineConfig({
             include: path.resolve(__dirname, './resources/js/locales/**')
         })
     ],
+
+    resolve: {
+        alias: {
+            '@': path.resolve(__dirname, './resources/js/'),
+        },
+    },
 });
