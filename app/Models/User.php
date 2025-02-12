@@ -13,10 +13,11 @@ use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Laravel\Scout\Searchable;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, Notifiable, HasRoles, BaseTrait, SoftDeletes, HasFactory;
+    use HasApiTokens, Notifiable, HasRoles, BaseTrait, SoftDeletes, HasFactory, Searchable;
 
     protected $guard_name = 'web';
     /**
@@ -147,6 +148,20 @@ class User extends Authenticatable
     public function fullName()
     {
         return $this->first_name . ' ' . $this->last_name;
+    }
+
+    /**
+     * Define search keys
+     * 
+     * @return array
+     */
+    public function toSearchableArray(): array
+    {
+        return [
+            'first_name' => '',
+            'last_name' => '',
+            'email' => ''
+        ];
     }
 
 }

@@ -13,6 +13,7 @@ export default function useAddresses() {
         query,
         isLoading,
         service,
+        innerService,
         itemData,
         getItem,
         parent,
@@ -36,6 +37,7 @@ export default function useAddresses() {
     } = useShared()
 
     service.value = AddressesService;
+    innerService.value = AddressesService;
 
     const address = ref()
     

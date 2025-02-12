@@ -32,9 +32,8 @@ class UsersController extends Controller
          * the second param stands for columns, so we can cast what's needed
          * in the model and call it here
          */
-        $query = User::query();
-        $query = self::generalSearch(new User(), $query, $request);
-        return new UserResource($query->paginate($request->limit, ['*'], 'page', $request->offset));
+        $query = User::search($request->search);
+        return new UserResource($query->paginate($request->limit, 'page', $request->offset));
     }
 
     /**

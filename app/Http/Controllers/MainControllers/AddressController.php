@@ -27,14 +27,17 @@ class AddressController extends Controller
      */
     public function index(AddressIndexRequest $request)
     {
-        $query = Address::query();
+        $query = Address::search($request->search);
         if (!$request->parent_id)
-            $query = $query->whereNull('parent_id');
+            $query = $query->query(function ($subQuery) {
+                $subQuery->whereNull('parent_id');
+            });
         else
-            $query = $query->where('parent_id', $request->parent_id);
+            $query->query(function ($subQuery) use ($request) {
+                $subQuery->where('parent_id', $request->parent_id);
+            });
 
-        $query = self::generalSearch(new Address(), $query, $request);
-        $addresses = $query->paginate($request->limit, ['*'], 'page', $request->offset);
+        $addresses = $query->paginate($request->limit, 'page', $request->offset);
         $parent = Address::find($request->parent_id);
 
         return (new AddressResource($addresses))->additional(['parentData' => $parent]);
@@ -76,7 +79,7 @@ class AddressController extends Controller
      */
     public function destroy(Address $address)
     {
-        if($address->hasRelations())
+        if ($address->hasRelations())
             throw ValidationException::withMessages(['id' => trans('validation.has_relations')]);
         $address->delete();
         return self::jsonResponse('success');
@@ -91,5 +94,4 @@ class AddressController extends Controller
         $address->toggleActivation();
         return self::jsonResponse('success', $address);
     }
-
 }

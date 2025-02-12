@@ -45,6 +45,7 @@
                 :userPermissions="userPermissions"
                 :cols="addressCols"
                 :actions="addressActions"
+                @loadData="loadParentData"
             >
             </t-data-table>
         </div>

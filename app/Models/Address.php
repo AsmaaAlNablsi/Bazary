@@ -5,10 +5,11 @@ namespace App\Models;
 use App\Traits\TranslatedAttributes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Laravel\Scout\Searchable;
 
 class Address extends BaseModel
 {
-    use TranslatedAttributes;
+    use TranslatedAttributes, Searchable;
 
     protected $table = 'addresses';
 
@@ -50,5 +51,18 @@ class Address extends BaseModel
         if (sizeof($this->children) > 0)
             return true;
         return false;
+    }
+
+    /**
+     * Define search keys
+     * 
+     * @return array
+     */
+    public function toSearchableArray(): array
+    {
+        return [
+            'name_en' => '',
+            'name_ar' => ''
+        ];
     }
 }
