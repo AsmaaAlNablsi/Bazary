@@ -18,6 +18,7 @@ export default function useShared() {
     const itemData = ref()
     const tableData = ref([])
     const service = ref()
+    const innerService = ref()
     provide('service', service);
     const detailsService = ref()
     const pagination = ref({})
@@ -116,18 +117,18 @@ export default function useShared() {
         }
     }
 
-    const loadParentData = async (query) => {
+    const loadParentData = async (query, parent_name = '') => {
         try {
             if (query === undefined)
                 query = {
                     search: '',
-                    page: 1,
+                    page: 0,
                     per_page: 10,
                 }
 
-
-            const {data: {data, meta, parentData}} = await service.value.index({
+            const {data: {data, meta, parentData}} = await innerService.value.index({
                 parent_id: (parent.value !== null) ? parent.value : '',
+                parent_name: parent_name,
                 page: query.page,
                 size: query.per_page,
                 search: query.search,
@@ -291,6 +292,7 @@ export default function useShared() {
         query,
         isLoading,
         service,
+        innerService,
         detailsService,
         itemData,
         updateModal,

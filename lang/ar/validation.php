@@ -121,6 +121,13 @@ return [
         'string' => 'يجب أن يحتوي النص :attribute على :size حروفٍ/حرفًا بالظبط',
         'array' => 'يجب أن يحتوي الحقل :attribute على :size عنصرٍ/عناصر بالظبط',
     ],
+    'password' => [
+        'letters' => 'يجب أن يحتوي حقل :attribute على حرف واحد على الأقل.',
+        'mixed' => 'يجب أن يحتوي حقل :attribute على حرف كبير واحد على الأقل وحرف صغير واحد على الأقل.',
+        'numbers' => 'يجب أن يحتوي حقل :attribute على رقم واحد على الأقل.',
+        'symbols' => 'يجب أن يحتوي حقل :attribute على رمز واحد على الأقل.',
+        'uncompromised' => 'قيمة :attribute التي تم إدخالها تظهر في تسريب بيانات. من فضلك اختر قيمة مختلفة لـ :attribute.',
+    ],
     'starts_with' => ' :attribute يجب أن يبدأ بواحد من following: :values.',
     'string' => 'يجب أن يكون الحقل :attribute نصآ.',
     'timezone' => 'يجب أن يكون :attribute نطاقًا زمنيًا صحيحًا',

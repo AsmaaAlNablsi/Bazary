@@ -45,8 +45,8 @@
                 :loading="isLoading"
                 :userPermissions="userPermissions"
                 :cols="addressCols"
-                @loadData="loadAddresses"
                 :actions="addressActions"
+                @loadData="loadAddresses"
             >
             </t-data-table>
         </div>

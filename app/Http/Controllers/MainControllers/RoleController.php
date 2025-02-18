@@ -28,14 +28,13 @@ class RoleController extends Controller
      */
     public function index(RoleIndexRequest $request)
     {
-        $query = Role::query();
+        $query = Role::search($request->search);
         if ($request->parent_id)
-            $query = $query->join('model_has_roles', 'model_has_roles.role_id', 'roles.id')
-                ->whereModelId($request->parent_id);
-
-        $query = self::generalSearch(new Role(), $query, $request);
-
-        return new RoleResource($query->paginate($request->limit, ['*'], 'page', $request->offset));
+            $query = $query->query(function ($subQuery) use ($request) {
+                $subQuery->join('model_has_roles', 'model_has_roles.role_id', 'roles.id')
+                    ->whereModelId($request->parent_id);
+            });
+        return new RoleResource($query->paginate($request->limit, 'page', $request->offset));
     }
 
 
@@ -46,7 +45,6 @@ class RoleController extends Controller
     {
         $role = Role::add($request);
         return self::jsonResponse('success', $role);
-
     }
 
     /**
@@ -54,7 +52,7 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        return self::jsonResponse('success',[ 'role' => $role, 'permissions' => $role->permissions]);
+        return self::jsonResponse('success', ['role' => $role, 'permissions' => $role->permissions]);
     }
 
     /**
@@ -71,10 +69,9 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        if($role->hasRelations())
+        if ($role->hasRelations())
             throw ValidationException::withMessages(['id' => trans('validation.has_relations')]);
         $role->delete();
         return self::jsonResponse('success');
-
     }
 }
