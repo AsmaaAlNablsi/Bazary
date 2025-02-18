@@ -52,7 +52,7 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        return self::jsonResponse('success', ['role' => $role, 'permissions' => $role->permissions]);
+        return self::jsonResponse('success',[ 'role' => $role, 'permissions' => $role->permissions->pluck('name')]);
     }
 
     /**
