@@ -103,3 +103,12 @@
     font-size: smaller !important;
     color: white !important;
 }
+
+
+.dt__table__tbody_td{
+    text-wrap: auto;  
+  }
+  
+select.dt__pagination_size{
+      padding-right: 1.5rem !important;
+  }
