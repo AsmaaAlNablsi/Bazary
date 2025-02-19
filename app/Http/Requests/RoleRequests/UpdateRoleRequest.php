@@ -23,8 +23,8 @@ class UpdateRoleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name_ar'=>['sometimes','string'],
-            'name_en'=>['sometimes','string', Rule::unique('roles')->ignore($this->role)],
+            'name_ar'=>['sometimes','string', 'max:50'],
+            'name_en'=>['sometimes','string', Rule::unique('roles')->ignore($this->role)->whereNull('deleted_at'), 'max:50'],
             'permissions'=>['required','array','min:1'],
             'permissions.*'=>['bail','string','exists:permissions,name']
         ];

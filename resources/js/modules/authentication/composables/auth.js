@@ -4,6 +4,7 @@ import {notify} from "@kyvg/vue3-notification";
 import store from "@/store/store.js";
 import { VForm } from 'vuetify/lib/components/index';
 import {useI18n} from "vue-i18n";
+import useValidations from '@/helpers/validations.js'
 
 export default function useAuth() {
     const {t} = useI18n({})
@@ -11,11 +12,7 @@ export default function useAuth() {
     const form = ref<typeof VForm>(null);
     const valid = ref(false);
 
-    const validationRules = {
-        email: value => /.+@.+\..+/.test(value) || t('validation.email'),
-        password: value => /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/.test(value) || t('validation.password'),
-        required: value => !!value || t('validation.required')
-    }
+    const validationRules = useValidations(t);
 
     const validation = {
         email: [

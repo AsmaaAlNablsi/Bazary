@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests\UserRequests;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseRequest;
 use Illuminate\Validation\Rules\Password;
 
-class StoreUserRequest extends FormRequest
+class StoreUserRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,10 +25,10 @@ class StoreUserRequest extends FormRequest
         return [
             'first_name' => 'required',
             'last_name' => 'required',
-            'email' => ['required', 'email', 'unique:users,email'],
-            'password' => ['required', Password::min(8)->mixedCase()->symbols()],
+            'email' => ['required', 'email', 'unique_ignore_deleted:users,email'],
+            'password' => ['required', Password::min(8)->max(20)->mixedCase()->symbols()],
             'roles' => ['sometimes', 'array'],
-            'roles.*' => ['bail', 'string', 'exists:roles,name']
+            'roles.*' => ['bail', 'string', 'exists_ignore_deleted:roles,name']
         ];
     }
 

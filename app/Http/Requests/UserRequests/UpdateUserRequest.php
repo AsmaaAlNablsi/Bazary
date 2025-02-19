@@ -2,11 +2,11 @@
 
 namespace App\Http\Requests\UserRequests;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseRequest;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
 
-class UpdateUserRequest extends FormRequest
+class UpdateUserRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,10 +26,10 @@ class UpdateUserRequest extends FormRequest
         return [
             'first_name' => 'sometimes',
             'last_name' => 'sometimes',
-            'password' => ['sometimes','nullable', Password::min(8)->mixedCase()->symbols()],
-            'email' => ['sometimes', 'email', Rule::unique('users')->ignore($this->user)],
+            'password' => ['sometimes','nullable', Password::min(8)->max(20)->letters()->numbers()->mixedCase()->symbols()],
+            'email' => ['sometimes', 'email', Rule::unique('users')->ignore($this->user)->whereNull('deleted_at')],
             'roles' => ['required', 'array', 'min:1'],
-            'roles.*' => ['bail', 'string', 'exists:roles,name']
+            'roles.*' => ['bail', 'string', 'exists_ignore_deleted:roles,name']
         ];
     }
 

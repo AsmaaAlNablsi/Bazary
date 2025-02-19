@@ -47,6 +47,7 @@ return [
     'ends_with' => ':attribute يجب أن ينتهي ب: :values.',
     'enum' => 'المحدد :attribute الحقل خاطئ.',
     'exists' => 'الحقل :attribute غير موجود',
+    'exists_ignore_deleted' => 'الحقل :attribute غير موجود',
     'file' => 'الـ :attribute يجب أن يكون من ملفا.',
     'filled' => 'الحقل :attribute إجباري',
     'gt' => [
@@ -132,6 +133,7 @@ return [
     'string' => 'يجب أن يكون الحقل :attribute نصآ.',
     'timezone' => 'يجب أن يكون :attribute نطاقًا زمنيًا صحيحًا',
     'unique' => 'قيمة الحقل :attribute مُستخدمة من قبل',
+    'unique_ignore_deleted' => 'قيمة الحقل :attribute مُستخدمة من قبل',
     'uploaded' => 'فشل في تحميل الـ :attribute',
     'url' => 'صيغة الرابط :attribute غير صحيحة',
     'uuid' => ' attribute: يجب أن يكون رقم غير مستخدم من قبل.',

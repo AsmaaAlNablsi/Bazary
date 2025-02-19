@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests\RoleRequests;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseRequest;
 
-class StoreRoleRequest extends FormRequest
+class StoreRoleRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +22,8 @@ class StoreRoleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name_ar'=>['required','string'],
-            'name'=>['required','string','unique:roles,name'],
+            'name_ar'=>['required','string', 'max:50'],
+            'name'=>['required','string','unique_ignore_deleted:roles,name', 'max:50'],
             'permissions'=>['required','array','min:1'],
             'permissions.*'=>['bail','string','exists:permissions,name']
         ];

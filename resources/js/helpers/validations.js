@@ -14,7 +14,7 @@ export default function useValidations(t) {
         /^0[0-9]{9}$/.test(value) || t('validation.phone'),
     
     password: value =>
-      /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/.test(value) || t('validation.password'),
+        (!validators.helpers.req(value) || /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/.test(value)) || t('validation.password'),
     
     required: value => 
         validators.required.$validator(value) || t('validation.required'),
