@@ -18,7 +18,8 @@ return Application::configure(basePath: dirname(__DIR__))
             'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class
         ]);
         $middleware->use([
-            \App\Http\Middleware\Localization::class
+            \App\Http\Middleware\Localization::class,
+            \Illuminate\Foundation\Http\Middleware\TrimStrings::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
