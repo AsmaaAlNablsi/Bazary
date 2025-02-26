@@ -34,4 +34,16 @@ trait GeneralSearch
         }
     }
 
+    public function customSearch($query, $request, $columns=[], $table_name=''){
+        if (isset($request->search) && $request->search !="undefined") {
+            $query->where(function ($query) use ($columns, $request,$table_name) {
+                foreach ($columns as $column) {
+                        $column = $table_name?$table_name.'.'.$column:$column;
+                    $query->orWhere($column, 'like', "%{$request->search}%");
+                }
+            });
+        }
+        return $query;
+    }
+
 }
