@@ -97,27 +97,6 @@ class PermissionsSeeder extends Seeder
                 'name_ar' => 'تفعيل / إلغاء تفعيل مستخدم',
                 'name' => 'users/toggle-activation',
             ],
-
-            [
-                'name_ar' => 'عرض قائمة التخصصات',
-                'name' => 'specialties',
-            ],
-            [
-                'name_ar' => 'إنشاء تخصص',
-                'name' => 'specialties/create',
-            ],
-            [
-                'name_ar' => 'تعديل تخصص',
-                'name' => 'specialties/update',
-            ],
-            [
-                'name_ar' => 'عرض تفاصيل تخصص',
-                'name' => 'specialties/details',
-            ],
-            [
-                'name_ar' => 'حذف تخصص',
-                'name' => 'specialties/delete',
-            ],
             
             [
                 'name_ar' => 'لوحة التحكم',
