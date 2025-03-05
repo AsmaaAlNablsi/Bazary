@@ -15,6 +15,8 @@ import Store from "./store/store.js";
 import axios from "axios";
 import cookie from "vue-cookies";
 import loader from './plugins/loader.js';
+import { QuillEditor } from '@vueup/vue-quill';
+import '@vueup/vue-quill/dist/vue-quill.snow.css';
 
 const app = createApp(App);
 
@@ -37,6 +39,7 @@ app.use(Vuetify)
     .use(Notifications)
     .use(i18n)
     .use(loader, {axios: axios})
+    .component('QuillEditor', QuillEditor)
     .component("DataTable", DataTable)
     .component("TableBody", TableBody)
     .component("TableHead", TableHead)
