@@ -13,9 +13,9 @@
         :chips="chips"
         :closable-chips="closableChips"
         auto-select-first="exact"
-        @update:search="serverSearch ? select.getItems : true"
+        @update:search="ServerSearch"
         @click="requestOnClick ? select.getItems() : true"
-        :class="class"
+        :class="computedClass"
     >
         <template v-slot:append-item>
             <div v-intersect.quiet="select.loadMoreFromApi" />
@@ -28,13 +28,16 @@
     </v-autocomplete>
 </template>
 <script setup>
-import { useLazySelect } from "@/helpers/t-lazy-select.js";
+import useLazySelect from "@/helpers/t-lazy-select.js";
 import { onMounted, ref } from "vue";
 
 const props = defineProps({
     validation: {
         required: true,
-        type: Object,
+        type: Array,
+        default() {
+            return [];
+        }
     },
     uri: {
         required: true,
@@ -106,8 +109,16 @@ const select = useLazySelect(props.uri);
 
 onMounted( () => {
      select.getItems();
-     props.class = multiple ? props.class : `chips-unset-style ${props.class}`
 });
 
+const computedClass = computed(() => {
+    return props.multiple ? props.class : `chips-unset-style ${props.class}`;
+});
+
+const ServerSearch = async (search) => {
+    if (props.serverSearch) {
+        await select.getItems(search);
+    }
+}
 const selectedItems = defineModel("selectedItems");
 </script>
