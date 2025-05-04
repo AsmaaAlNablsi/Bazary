@@ -16,15 +16,6 @@ class PermissionsSeeder extends Seeder
      */
     public function run(): void
     {
-        Schema::disableForeignKeyConstraints();
-        DB::table('role_has_permissions')->truncate();
-        DB::table('model_has_permissions')->truncate();
-        DB::table('model_has_roles')->truncate();
-        DB::table('roles')->truncate();
-        DB::table('permissions')->truncate();
-        Schema::enableForeignKeyConstraints();
-
-
         $permissions = [
             [
                 'name_ar' => 'عرض قائمة الأدوار',
@@ -125,25 +116,29 @@ class PermissionsSeeder extends Seeder
             ]
         ];
 
-        foreach ($permissions as $permission)
-            Permission::query()->create(
+        foreach ($permissions as $permission) {
+            Permission::query()->firstOrCreate(
+                ['name' => $permission['name']],
                 [
                     'name_ar' => $permission['name_ar'],
                     'name' => $permission['name'],
                 ]
             );
+        }
 
         $admin = User::where('email', 'admin@tatweer.sy')->first();
 
-        $superAdmin = Role::create([
-            'name' => 'SuperAdmin',
-            'name_ar' => 'مدير النظام',
-            'created_by' => $admin->id
-        ]);
+        $superAdmin = Role::firstOrCreate(
+            ['name' => 'SuperAdmin'],
+            [
+                'name' => 'SuperAdmin',
+                'name_ar' => 'مدير النظام',
+                'created_by' => $admin->id
+            ]
+        );
 
-        $superAdmin->givePermissionTo(Permission::all());
+        $superAdmin->syncPermissions(Permission::all());
 
-        $admin->assignRole($superAdmin);
-
+        $admin->assignRole([$superAdmin]);
     }
 }
