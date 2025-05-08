@@ -180,8 +180,8 @@ export default function useShared() {
         }
     }
     
-    const storeModalItem = async (data, showLoader = false, isFormValid = false) => {
-        if (!isFormValid)
+    const storeModalItem = async (data, showLoader = false) => {
+        if (!valid.value)
             return false;
         try {
             let response = await service.value.store(data, showLoader);
@@ -223,8 +223,8 @@ export default function useShared() {
         }
     }
 
-    const updateModalItem = async (item, showLoader = false, isFormValid = false) => {
-        if (!isFormValid)
+    const updateModalItem = async (item, showLoader = false) => {
+        if (!valid.value)
             return false;
         try {
             let response = await service.value.update(item, item.id, showLoader);
