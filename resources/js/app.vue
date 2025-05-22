@@ -35,13 +35,11 @@ export default {
     },
     components: { AppHeader, AppFooter, AppNavigation, TLoader },
     mounted() {
-        if (localStorage.getItem('lang')) {
-            this.$i18n.locale = localStorage.getItem('lang')
-            localStorage.setItem('lang', localStorage.getItem('lang'));
-        }
-        else
-            localStorage.setItem('lang', this.$i18n.locale);
-        this.$vuetify.locale.rtl = (localStorage.getItem('lang') === 'ar') ? { ar: true } : { en: true };
+        const localLang = localStorage.getItem("lang");
+        if (localStorage.getItem("lang")) {
+            this.$i18n.locale = localLang;
+            localStorage.setItem("lang", localLang);
+        } else localStorage.setItem("lang", this.$i18n.locale);
     }
 }
 </script>
