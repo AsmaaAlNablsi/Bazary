@@ -36,7 +36,7 @@
             </v-row>
             <v-row class="mt-n5">
                 <v-col>
-                    <v-select
+                    <v-autocomplete
                         :label="$t('roles.please_select_permissions')"
                         v-model="itemData.permissions"
                         :items="permissions"
@@ -59,7 +59,7 @@
                             </span>
                         </template>
 
-                    </v-select>
+                    </v-autocomplete>
                 </v-col>
             </v-row>
             <router-link :to="{ name: 'roles'}">
