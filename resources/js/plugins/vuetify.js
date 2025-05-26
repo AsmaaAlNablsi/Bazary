@@ -5,6 +5,8 @@ import * as directives from 'vuetify/directives';
 import {aliases, mdi} from 'vuetify/iconsets/mdi'
 import '@mdi/font/css/materialdesignicons.css'
 import { ar, en } from 'vuetify/locale'
+import { createVueI18nAdapter } from 'vuetify/locale/adapters/vue-i18n'
+import { createI18n, useI18n } from 'vue-i18n'
 
 const customTheme = {
     dark: false,
@@ -19,6 +21,31 @@ const customTheme = {
     },
 }
 
+const  localStorageLang = localStorage.getItem("lang");
+const setLocalLang = ( localStorageLang === '' || localStorageLang === 'en') ? "en" : "ar";
+
+const messages = {
+    en: {
+        $vuetify: {
+            ...en,
+        },
+    },
+    ar: {
+        $vuetify: {
+            ...ar,
+        },
+    },
+}
+
+const i18n = createI18n({
+    rtl: { ar: true },
+    legacy: false, // Vuetify does not support the legacy mode of vue-i18n
+    current: setLocalLang,
+    locale: setLocalLang,
+    fallback: 'en',
+    fallbackLocale: 'en',
+    messages,
+})
 export default createVuetify({
     theme: {
         defaultTheme: 'customTheme',
@@ -26,14 +53,12 @@ export default createVuetify({
             customTheme,
         },
     },
+    directives,
+
     locale: {
-        locale: 'ar',
-        fallback: 'ar',
-        messages: { ar, en },
-        rtl: {ar: true},
+        adapter: createVueI18nAdapter({ i18n, useI18n }),
     },
     components,
-    directives,
     icons: {
         defaultSet: 'mdi',
         aliases,

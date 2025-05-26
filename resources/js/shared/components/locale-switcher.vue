@@ -13,11 +13,11 @@ export default {
     methods: {
         changeLocale() {
             new BaseService().lang();
-            const lang = (this.$i18n.locale === 'ar') ? 'en' : 'ar';
+            const lang = this.$i18n.locale === "ar" ? "en" : "ar";
             this.$i18n.locale = lang;
-            localStorage.setItem('lang', lang);
-            this.$vuetify.locale.rtl = (lang === 'ar') ? { ar: true } : { en: true };
-        }
+            this.$vuetify.locale.current = lang;
+            localStorage.setItem("lang", lang);
+        },
     },
 
 };
