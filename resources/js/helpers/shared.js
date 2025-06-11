@@ -9,7 +9,6 @@ import '../../css/crud.css';
 import '../../css/forms.css';
 import '../../css/modal.css';
 import useValidations from './validations.js'
-import cookie from "vue-cookies";
 
 
 export default function useShared() {
@@ -69,14 +68,15 @@ export default function useShared() {
     }
 
     const loadData = async (query) => {
+            console.log( query)
         try {
             isLoading.value = true;
-            if (query === undefined)
-                query = {
-                    search: '',
-                    page: 1,
-                    per_page: 10,
-                }
+            // if (query === undefined)
+            //     query = {
+            //         search: '',
+            //         page: 1,
+            //         per_page: 10,
+            //     }
             const {data: {data, meta}} = await service.value.index({
                 parent_id: '',
                 page: query.page,
@@ -84,8 +84,8 @@ export default function useShared() {
                 search: query.search,
             });
             tableData.value = data
-            pagination.value = {...pagination.value, page: query.page, total: meta.total}
-            cookie.set(`${service.value.routPath}LoadData`, JSON.stringify({pagination: pagination.value, query: query}));
+            pagination.value = {...pagination.value, page: query.page, total: meta.total, per_page: query.per_page}
+            localStorage.setItem(service.value.routPath + 'LoadData', JSON.stringify({pagination: pagination.value, query: query}));
             isLoading.value = false
         } catch (error) {
             isLoading.value = false
@@ -109,8 +109,8 @@ export default function useShared() {
                 search: detailsQuery.search,
             });
             detailsTableData.value = data
-            detailsPagination.value = {...detailsPagination.value, page: detailsQuery.page, total: meta.total}
-            cookie.set(`${service.value.routPath}LoadParentData`, JSON.stringify({pagination: detailsPagination.value, query: detailsQuery}));
+            detailsPagination.value = {...detailsPagination.value, page: detailsQuery.page, total: meta.total,  per_page: detailsQuery.per_page}
+            localStorage.setItem(`${service.value.routPath}LoadParentData`, JSON.stringify({pagination: detailsPagination.value, query: detailsQuery}));
             detailsIsLoading.value = false
         } catch (error) {
             await errorHandle(error)
@@ -138,8 +138,8 @@ export default function useShared() {
             if (parentData)
                 parentDetails.value = parentData;
 
-            pagination.value = {...pagination.value, page: query.page, total: meta.total}
-            cookie.set(`${service.value.routPath}${parent.value ? 'LoadParentData' : 'LoadData'}`,
+            pagination.value = {...pagination.value, page: query.page, total: meta.total,  per_page: query.per_page}
+            localStorage.setItem(`${service.value.routPath}${parent.value ? 'LoadParentData' : 'LoadData'}`,
                  JSON.stringify({pagination: pagination.value, query: query}));
             isLoading.value = false
         } catch (error) {

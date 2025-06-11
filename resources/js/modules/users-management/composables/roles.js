@@ -103,8 +103,11 @@ export default function useRoles() {
                 });
 
                 tableData.value = data
-                pagination.value = {...pagination.value, page: query.page, total: meta.total}
-            cookie.set(`${service.value.routPath}LoadParentData`, JSON.stringify({pagination: pagination.value, query: query}));
+                pagination.value = {...pagination.value, page: query.page, total: meta.total, per_page: query.per_page}
+            
+                localStorage.setItem(`${service.value.routPath}${parent.value ? 'LoadParentData' : 'LoadData'}`,
+                 JSON.stringify({pagination: pagination.value, query: query}));
+
             isLoading.value = false
             }
 
