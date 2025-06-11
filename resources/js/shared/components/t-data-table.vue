@@ -1,8 +1,8 @@
 <template>
     <data-table
         :rows="rows"
-        :pagination="cookie.get(`${service.routPath + queryType}`)?.pagination ?? pagination"
-        :query="cookie.get(`${service.routPath + queryType}`)?.query ?? query"
+        :pagination="savedState?.pagination ?? pagination"
+        :query="savedState?.query ?? query" 
         :loading="loading"
         hoverable
         filter
@@ -32,9 +32,9 @@
     </data-table>
 </template>
 <script setup>
-import { defineProps, inject } from "vue";
+import { defineProps, inject, computed } from "vue";
 const service = inject('service');
-import cookie from "vue-cookies";
+
 const props = defineProps([
     "rows",
     "pagination",
@@ -45,5 +45,17 @@ const props = defineProps([
     "actions",
     "userPermissions",
 ]);
+
+// Create a computed property to safely access localStorage
+const savedState = computed(() => {
+    // Check if we're in a browser environment where localStorage is available
+    if (typeof window !== 'undefined' && window.localStorage) {
+        const key = `${service.value.routPath + props.queryType}`;
+        const storedData = window.localStorage.getItem(key);
+        return storedData ? JSON.parse(storedData) : null;
+    }
+    return null;
+});
+
 const emit = defineEmits(["loadData"]);
 </script>
