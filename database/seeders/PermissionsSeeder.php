@@ -36,10 +36,12 @@ class PermissionsSeeder extends Seeder
                 'name_ar' => 'عرض تفاصيل دور',
                 'name' => 'roles/details',
             ],
+
             [
                 'name_ar' => 'عرض قائمة الصلاحيات',
                 'name' => 'permissions',
             ],
+                       /** addresses */
             [
                 'name_ar' => 'عرض قائمة العناوين',
                 'name' => 'addresses',
@@ -64,6 +66,7 @@ class PermissionsSeeder extends Seeder
                 'name_ar' => 'تفعيل / إلغاء تفعيل عنوان',
                 'name' => 'addresses/toggle-activation',
             ],
+                 /** users */
             [
                 'name_ar' => 'عرض قائمة المستخدمين',
                 'name' => 'users',
@@ -88,11 +91,54 @@ class PermissionsSeeder extends Seeder
                 'name_ar' => 'تفعيل / إلغاء تفعيل مستخدم',
                 'name' => 'users/toggle-activation',
             ],
-            
+
             [
                 'name_ar' => 'لوحة التحكم',
                 'name' => 'dashboard',
-            ]
+            ],
+            /** locations */
+            [
+                'name_ar' => 'عرض قائمة المواقع',
+                'name' => 'locations',
+            ],
+            [
+                'name_ar' => 'إنشاء موقع',
+                'name' => 'locations/create',
+            ],
+            [
+                'name_ar' => 'تعديل موقع',
+                'name' => 'locations/update',
+            ],
+            [
+                'name_ar' => 'عرض تفاصيل موقع',
+                'name' => 'locations/details',
+            ],
+            [
+                'name_ar' => 'حذف موقع',
+                'name' => 'locations/delete',
+            ],
+            /** category */
+
+            [
+                'name_ar' => 'عرض قائمة التصنيفات',
+                'name' => 'categories',
+            ],
+            [
+                'name_ar' => 'إنشاء صنف',
+                'name' => 'categories/create',
+            ],
+            [
+                'name_ar' => 'تعديل صنف',
+                'name' => 'categories/update',
+            ],
+            [
+                'name_ar' => 'عرض تفاصيل الصنف',
+                'name' => 'categories/details',
+            ],
+            [
+                'name_ar' => 'حذف صنف',
+                'name' => 'categories/delete',
+            ],
         ];
 
         foreach ($permissions as $permission) {
@@ -105,7 +151,7 @@ class PermissionsSeeder extends Seeder
             );
         }
 
-        $admin = User::where('email', 'admin@tatweer.sy')->first();
+        $admin = User::where('email', 'admin@bazary.sy')->first();
 
         $superAdmin = Role::firstOrCreate(
             ['name' => 'SuperAdmin'],

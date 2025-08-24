@@ -5,7 +5,7 @@
         variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
         <v-toolbar-title>
             <router-link to="/">
-                <img class="header-logo" src="@/assets/logo/logo.png">
+                <img class="header-logo" src="@/assets/logo/logo.jpg">
             </router-link>
         </v-toolbar-title>
 

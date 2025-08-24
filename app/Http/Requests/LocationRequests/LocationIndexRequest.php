@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\AddressRequests;
+namespace App\Http\Requests\LocationRequests;
 
 use App\Http\Requests\IndexRequest;
 
 
-class AddressIndexRequest extends IndexRequest
+class LocationIndexRequest extends IndexRequest
 {
     /**
      * Determine if the user is authorized to make this request.

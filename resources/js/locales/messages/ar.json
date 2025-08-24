@@ -25,7 +25,9 @@
         "real_estates_map": "مواقع العقارات",
         "powered_by": "مُشغَّل من قبل",
         "services_management": "إدارة الخدمات",
-        "tatweer": "تَطوير"
+        "locations": "المواقع",
+        "products_management"   : "إدارة المنتجات",
+        "categories_management" : "إدارة التصنيفات"
     },
     "users": {
         "users": "المستخدمون",
@@ -41,7 +43,7 @@
         "is_active": "فعال"
     },
 
-    
+
     "owners": {
         "owners": "العملاء",
         "details": "تفاصيل العميل",
@@ -222,11 +224,12 @@
         "1": "نعم",
         "0": "لا"
     },
-    "addresses": {
-        "addresses": "العناوين",
-        "details": "تفاصيل العنوان",
-        "edit": "تعديل عنوان",
-        "add": "إضافة عنوان"
+    "locations": {
+        "locations": "المواقع",
+        "details": "تفاصيل الموقع",
+        "edit": "تعديل موقع",
+        "add": "إضافة موقع",
+        "code": "كود"
     },
     "login": "تسجيل الدخول",
     "save": "حفظ",

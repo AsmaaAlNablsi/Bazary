@@ -4,7 +4,7 @@
                  <v-container class="w-50">
                      <notifications position="top left" />
 
-                    <img class="login-logo" src="@/assets/logo/logo.png">
+                    <img class="login-logo" src="@/assets/logo/logo.jpg">
 
                     <h3 class="login-header py-5 my-5">{{ $t('login') }}</h3>
 

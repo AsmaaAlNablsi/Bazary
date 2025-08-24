@@ -2,16 +2,18 @@ import {createRouter, createWebHistory} from 'vue-router'
 import AuthRoutes from "../modules/authentication/auth-routes.js";
 import DashboardRoutes from "../modules/dashboard/dashboard-routes.js";
 import UsersManagementRoutes from "../modules/users-management/users-management-routes.js";
-import SettingsRoutes from "../modules/settings/settings-routes.js";
+import CategoriesManagementRoutes from "../modules/categories/categories-management-routes.js";
+import LocationsRoutes from "../modules/settings/Locations-routes.js";
 import store from "@/store/store.js";
 import {notify} from "@kyvg/vue3-notification";
 import i18n from "@/plugins/i18n.js";
 
 const routes = [
-    ...SettingsRoutes,
+    ...LocationsRoutes,
     ...UsersManagementRoutes,
     ...DashboardRoutes,
     ...AuthRoutes,
+    ...CategoriesManagementRoutes,
     {
         path: "/:catchAll(.*)",
         name: "NotFound",

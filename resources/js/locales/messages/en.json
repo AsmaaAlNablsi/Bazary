@@ -25,7 +25,10 @@
         "real_estates_map": "Real Estates Positions",
         "powered_by": "مُشغَّل من قبل",
         "services_management": "Services Management",
-        "tatweer": "تَطوير"
+        "bazary": "Bazary",
+        "locations": "Locations",
+        "products_management"   : "Products Management",
+        "categories_management" : "Categories Management"
     },
     "users": {
         "users": "Users",
@@ -222,11 +225,12 @@
         "1": "Yes",
         "0": "No"
     },
-    "addresses": {
-        "addresses": "Addresses",
+    "locations": {
+        "locations": "Locations",
         "details": "Details",
         "edit": "Edit",
-        "add": "Add"
+        "add": "Add",
+        "code": "Code",
     },
     "login" : "Login",
     "save" : "Save",

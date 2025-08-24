@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
   <g id="ic_arrow_down" transform="translate(-1433 -454.5)">
-    <path id="Bg" d="M12.5,0A12.5,12.5,0,0,1,25,12.5h0a12.5,12.5,0,1,1-25,0H0A12.5,12.5,0,0,1,12.5,0Z" transform="translate(1433 454.5)" fill="#acbfd6"/>
+    <path id="Bg" d="M12.5,0A12.5,12.5,0,0,1,25,12.5h0a12.5,12.5,0,1,1-25,0H0A12.5,12.5,0,0,1,12.5,0Z" transform="translate(1433 454.5)" fill="#6b1d4a"/>
     <path id="Path_141" data-name="Path 141" d="M3.833,2.933.879,0,0,.876,3.833,4.685,7.666.876,6.787,0Z" transform="translate(1441.666 464.658)" fill="#fff"/>
   </g>
 </svg>

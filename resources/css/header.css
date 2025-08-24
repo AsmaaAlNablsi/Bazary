@@ -1,9 +1,11 @@
 .header-nav {
     height: var(--v-layout-top) !important;
+    background-color: #ffd9b3;
 }
 
 .header-nav .v-toolbar__content {
     height: 100% !important;
+    background-color: #EEB8B8FF;
 }
 
 .header-logo {

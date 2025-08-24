@@ -10,6 +10,7 @@
 
 body {
     font-family: CairoRegular;
+    background-color: #EEB8B8FF;
 }
 
 .font-weight-bold {
@@ -26,6 +27,7 @@ body {
     height: calc(100vh - 6.5rem + 3px) !important;
     overflow-y: auto !important;
     padding-bottom: 3px !important;
+    background-color: #EEB8B8FF;
 }
 
 .clickable {
@@ -56,25 +58,28 @@ b {
 
 img {
     width: 20px;
+
 }
 
 .mdi-checkbox-marked {
-    color: #6b5dd1 !important;
+    color: #6b1d4a !important;
 }
 
 .colored-btn {
     background-image: linear-gradient(
         to right,
-        #6b5dd1 0%,
-        #786ec0 51%,
+        #9d3e6f 0%,
+        #6b1d4a  51%,
         #f7bafc 100%
     ) !important;
-    color: #fff !important;
+    color: #dca6a6 !important;
     display: flex !important;
 }
 
+
+
 .green-btn {
-    background-color: #55e0b2 !important;;
+    background-color: #55e0b2 !important;
 }
 
 .step-title-ar {
@@ -99,7 +104,7 @@ img {
     padding: .5rem 2.6rem !important;
     color: #ffce6f !important;
     font-weight: 700;
-    background-color: #fef4db !important;
+    background-color: #ffd9b3 !important;
 }
 
 .v-breadcrumbs-item--link {

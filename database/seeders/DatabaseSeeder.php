@@ -16,11 +16,11 @@ class DatabaseSeeder extends Seeder
         User::create([
             'first_name' => 'System',
             'last_name' => 'Admin',
-            'email' => 'admin@tatweer.sy',
-            'password' => Hash::make('Tatweer@123'),
+            'email' => 'admin@bazary.sy',
+            'password' => Hash::make('Bazary@123'),
         ]);
         $this->call([
-            AddressSeeder::class,
+            LocationSeeder::class,
             PermissionsSeeder::class
         ]);
     }

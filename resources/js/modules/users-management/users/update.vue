@@ -53,7 +53,7 @@
                     </v-text-field>
                 </v-col>
             </v-row>
-            <v-row class="mt-n5">
+            <v-row class="mt-n2">
                 <v-col>
                     <v-autocomplete
                         :label="$t('users.please_select_roles')"
@@ -65,6 +65,7 @@
                         variant="solo"
                         multiple
                         clearable
+                        :menu-props="{ offsetY: true, top: false }"
                     >
                         <template v-slot:selection="{ item, index }">
                             <span v-if="index < 6">{{ item.title }} &nbsp;</span>

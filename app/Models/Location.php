@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Scout\Searchable;
 
-class Address extends BaseModel
+class Location extends BaseModel
 {
-    use TranslatedAttributes, Searchable;
+    use  Searchable;
 
-    protected $table = 'addresses';
+    protected $table = 'locations';
 
     /**
      * The attributes that are mass assignable.
@@ -22,22 +22,38 @@ class Address extends BaseModel
         'parent_id',
         'level',
         'code',
-        'name_ar',
-        'name_en',
-        'description',
-        'is_active',
+        'name',
+        'auto_location_id',
     ];
 
+    /**
+     * @return BelongsTo
+     */
     public function parent(): BelongsTo
     {
-        return $this->belongsTo(Address::class, 'parent_id');
+        return $this->belongsTo(Location::class, 'parent_id');
     }
 
+    /**
+     * @return HasMany
+     */
     public function children(): HasMany
     {
-        return $this->hasMany(Address::class, 'parent_id');
+        return $this->hasMany(Location::class, 'parent_id');
     }
 
+    /**
+     * @return BelongsTo
+     */
+    public function autoLocation(): BelongsTo
+    {
+        return $this->belongsTo(Location::class, 'auto_location_id');
+    }
+
+
+    /**
+     * @return mixed
+     */
     public function grandParent()
     {
         return $this->parent?->parent;
@@ -55,14 +71,14 @@ class Address extends BaseModel
 
     /**
      * Define search keys
-     * 
+     *
      * @return array
      */
     public function toSearchableArray(): array
     {
         return [
-            'name_en' => '',
-            'name_ar' => ''
+            'name' => '',
+            'code' => '',
         ];
     }
 }

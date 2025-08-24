@@ -1,7 +1,7 @@
 <template>
     <v-navigation-drawer
         class="spacing-playground pa-2"
-        color="white"
+        color="#ffd9b3"
         width="312"
         v-model="drawer"
         :rail="rail"
@@ -60,8 +60,41 @@
             </v-list-group>
             <v-list-group
                 v-if="
-                    currentUser.permissions.includes('addresses') ||
-                    currentUser.permissions.includes('general-codes')
+                    currentUser.permissions.includes('categories')
+                "
+                value="categories"
+            >
+                <template v-slot:activator="{ props }">
+                    <v-list-item v-bind="props">
+                        <img src="@/assets/icons/ic_Customer_management.svg" />
+                        <span class="px-3">
+                            {{ $t("navigation.products_management") }}</span
+                        >
+                    </v-list-item>
+                </template>
+                <v-list-item
+                    v-if="currentUser.permissions.includes('categories')"
+                    to="/categories"
+                >
+                    <span class="px-3">
+                        {{ $t("navigation.categories_management") }}</span
+                    >
+                </v-list-item>
+                <v-list-item
+                    v-if="currentUser.permissions.includes('roles')"
+                    to="/roles"
+                >
+                    <span class="px-3">
+                        {{ $t("navigation.roles_management") }}</span
+                    >
+                </v-list-item>
+            </v-list-group>
+
+
+            <v-list-group
+                v-if="
+                    currentUser.permissions.includes('locations')
+
                 "
                 value="settings"
             >
@@ -74,19 +107,12 @@
                     </v-list-item>
                 </template>
                 <v-list-item
-                    v-if="currentUser.permissions.includes('addresses')"
-                    to="/addresses"
+                    v-if="currentUser.permissions.includes('locations')"
+                    to="/locations"
                 >
-                    <span class="px-3"> {{ $t("navigation.addresses") }}</span>
+                    <span class="px-3"> {{ $t("navigation.locations") }}</span>
                 </v-list-item>
-                <v-list-item
-                    v-if="currentUser.permissions.includes('general-codes')"
-                    to="/general-codes"
-                >
-                    <span class="px-3">
-                        {{ $t("navigation.general_codes") }}</span
-                    >
-                </v-list-item>
+
             </v-list-group>
         </v-list>
         <div class="nav-footer">
@@ -95,10 +121,10 @@
                     <a href="https://tatweer.sy" target="_blank">
                         <div>
                             {{ $t("navigation.powered_by") }}
-                            <!-- <span class="tw-footer-span">{{ $t('navigation.tatweer') }}</span> -->
+                            <!-- <span class="tw-footer-span">{{ $t('navigation.bazary') }}</span> -->
                         </div>
                         <div class="logo-img">
-                            <img src="@/assets/logo/tatweer-logo.png" />
+                            <img src="@/assets/logo/bazary-logo.png" />
                         </div>
                     </a>
                 </div>

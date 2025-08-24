@@ -3,12 +3,13 @@
     --v-field-padding-bottom: 5px !important;
     background: transparent !important;
     border-radius: 7px !important;
-    border: 3px solid whitesmoke !important;
+    border: 3px solid #6c0940 !important;
     box-shadow: none !important;
 }
 
 .v-field {
     height: 60px !important;
+
 }
 
 .v-field-label {

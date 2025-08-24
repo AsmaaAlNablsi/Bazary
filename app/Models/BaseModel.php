@@ -20,13 +20,13 @@ class BaseModel extends Model
         return $this->update(['is_active' => !$this->is_active]);
     }
 
-    public function hasRelations($relations): bool
-    {
-        foreach ($relations as $key => $value) {
-            if($this[Str::snake($value) . '_count'])
-            return true;
-        }
-
-        return false;
-    }
+//    public function hasRelations($relations): bool
+//    {
+//        foreach ($relations as $key => $value) {
+//            if($this[Str::snake($value) . '_count'])
+//            return true;
+//        }
+//
+//        return false;
+//    }
 }
