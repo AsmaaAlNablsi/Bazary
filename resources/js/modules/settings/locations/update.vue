@@ -56,13 +56,6 @@ import {ref, defineProps, onMounted} from 'vue';
 import useLocations from "@/modules/settings/composables/locations";
 
 
-const {
-    autoLocations,
-    getAutoLocations,
-    getAutoProtocols,
-    autoProtocols,
-} = useLocations()
-
 
 const valid = defineModel("valid", {type: Boolean});
 const form = defineModel("form", {type: Object});
@@ -71,10 +64,6 @@ const emit = defineEmits(["cancel", "update"]);
 
 const updateForm = ref({...form.value});
 
-onMounted( () => {
-    getAutoLocations();
-    getAutoProtocols();
-});
 
 </script>
 

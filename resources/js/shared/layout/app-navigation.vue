@@ -1,7 +1,7 @@
 <template>
     <v-navigation-drawer
         class="spacing-playground pa-2"
-        color="#ffd9b3"
+        color="#f4e6e6"
         width="312"
         v-model="drawer"
         :rail="rail"
@@ -80,14 +80,7 @@
                         {{ $t("navigation.categories_management") }}</span
                     >
                 </v-list-item>
-                <v-list-item
-                    v-if="currentUser.permissions.includes('roles')"
-                    to="/roles"
-                >
-                    <span class="px-3">
-                        {{ $t("navigation.roles_management") }}</span
-                    >
-                </v-list-item>
+
             </v-list-group>
 
 

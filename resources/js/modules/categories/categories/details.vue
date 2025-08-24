@@ -33,7 +33,7 @@
             </v-col>
             <v-col>
                 <p>
-                    {{ itemData.name }}
+                    {{ itemData.name_en }}
                 </p>
             </v-col>
         </v-row>
@@ -48,8 +48,7 @@ import {onMounted} from "vue";
 import TBreadcrumbs from "@/shared/components/t-breadcrumbs.vue";
 
 const {
-    getItem, itemData, isLoading, permissions,
-    loadParentData, tableData, query, pagination, parent,router,
+    getItem, itemData, isLoading, parent,router,
 } = useCategories()
 const props = defineProps({
     id: {

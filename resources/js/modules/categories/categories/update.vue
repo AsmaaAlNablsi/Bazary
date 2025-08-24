@@ -13,7 +13,7 @@
             </v-col>
         </v-row>
         <v-divider :thickness="2" class="mt-3 mb-5"></v-divider>
-        <v-form v-model="valid" v-on:submit.prevent="saveRole">
+        <v-form v-model="valid" v-on:submit.prevent="saveCategory">
             <v-row class="mt-n2ks">
                 <v-col>
                     <v-text-field
@@ -26,10 +26,10 @@
                 </v-col>
                 <v-col>
                     <v-text-field
-                        v-model="itemData.name"
+                        v-model="itemData.name_en"
                         :label="$t('name_en')"
                         variant="solo"
-                        :rules="validation.name"
+                        :rules="validation.name_en"
                     >
                     </v-text-field>
                 </v-col>
@@ -54,12 +54,11 @@
 <script setup>
 import useCategories from "../composables/categories.js";
 import {onMounted} from "vue";
-
 import TBreadcrumbs from "@/shared/components/t-breadcrumbs.vue";
 
 const {
-    updateItem, validation, form, valid,
-    getItem, itemData, isLoading, getPerms,
+    updateItem, validation, valid,
+    getItem, itemData, isLoading,
   router
 } = useCategories()
 const props = defineProps({
@@ -70,11 +69,10 @@ const props = defineProps({
 })
 
 onMounted(() => {
-    getPerms(true);
     getItem(props.id, true)
 })
 
-const saveRole = async () => {
+const saveCategory = async () => {
     await updateItem(itemData.value, 'categories')
 }
 </script>

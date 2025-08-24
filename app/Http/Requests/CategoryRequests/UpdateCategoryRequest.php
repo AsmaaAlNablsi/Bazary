@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\categoryRequests;
+namespace App\Http\Requests\CategoryRequests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -25,10 +25,10 @@ class UpdateCategoryRequest extends FormRequest
         $data = $this->request->all();
         return [
             'name_ar' => ['sometimes', 'string' , 'max:100' ,
-                Rule::unique('locations')->ignore($data['id'])->whereNull('deleted_at')
+                Rule::unique('categories')->ignore($data['id'])->whereNull('deleted_at')
             ],
             'name_en' => ['sometimes', 'string'  ,
-                Rule::unique('locations')->ignore($data['id'])->whereNull('deleted_at')
+                Rule::unique('categories')->ignore($data['id'])->whereNull('deleted_at')
             ],
         ];
     }

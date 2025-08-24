@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\categoryRequests;
+namespace App\Http\Requests\CategoryRequests;
 
+use App\Http\Requests\IndexRequest;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\Password;
 
-class StoreCategoryRequest extends FormRequest
+class IndexCategoryRequest extends IndexRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +22,6 @@ class StoreCategoryRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'name_en' => 'required',
-            'name_ar' => 'required',
-        ];
+        return parent::rules();
     }
 }

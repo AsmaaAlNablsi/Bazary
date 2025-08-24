@@ -26,10 +26,10 @@
                 </v-col>
                 <v-col>
                     <v-text-field
-                        v-model="form.name"
+                        v-model="form.name_en"
                         :label="$t('name_en')"
                         variant="solo"
-                        :rules="validation.name"
+                        :rules="validation.name_en"
                     >
                     </v-text-field>
                 </v-col>
@@ -55,15 +55,10 @@
 <script setup>
 import useCategories from "../composables/categories.js";
 import {onMounted} from "vue";
-
 import TBreadcrumbs from "@/shared/components/t-breadcrumbs.vue";
 
 const {
     storeItem, validation, form, valid,
-    tableData,
-    pagination,
-    query,
-    isLoading,
     getPerms,
     router
 } = useCategories()
@@ -74,6 +69,6 @@ onMounted(() => {
 
 
 const saveCategory = async () => {
-    await storeItem({...form}, 'categories', false, false, true, true)
+    await storeItem({...form}, 'categories', true)
 }
 </script>

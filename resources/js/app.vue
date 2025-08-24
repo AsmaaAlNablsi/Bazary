@@ -7,7 +7,7 @@
         <v-main class="flex-0-0">
             <notifications :position="'top '+$t('right')" />
             <div class="main-div">
-                <v-card width="95%" class="pa-5 mx-auto layout-card" color="#ffd9b3" outlined>
+                <v-card width="95%" class="pa-5 mx-auto layout-card" color="#f4e6e6" outlined>
                     <t-loader></t-loader>
                     <router-view :key="$route.fullPath"></router-view>
                 </v-card>
