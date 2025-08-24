@@ -26,10 +26,10 @@
                 </v-col>
                 <v-col>
                     <v-text-field
-                        v-model="form.name"
+                        v-model="form.name_en"
                         :label="$t('name_en')"
                         variant="solo"
-                        :rules="validation.name"
+                        :rules="validation.name_en"
                     >
                     </v-text-field>
                 </v-col>

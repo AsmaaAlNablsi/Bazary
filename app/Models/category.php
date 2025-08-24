@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+
+use App\Http\Requests\categoryRequests\StoreCategoryRequest;
+use App\Http\Requests\categoryRequests\UpdateCategoryRequest;
+use Illuminate\Support\Facades\DB;
 use Laravel\Scout\Searchable;
 
 class category extends BaseModel
@@ -21,6 +23,44 @@ class category extends BaseModel
         'name_ar',
         'name_en',
     ];
+
+    public static function add(StoreCategoryRequest $request): Category
+    {
+        DB::beginTransaction();
+        try {
+            $user = Category::create([
+                'name_ar' => $request->name_ar,
+                'name_en' => $request->name_en,
+            ]);
+            $user->syncRoles($request->roles);
+            DB::commit();
+            return $user;
+        } catch (\Throwable $exception) {
+            DB::rollBack();
+            throw $exception;
+        }
+    }
+
+
+
+    public function edit(UpdateCategoryRequest $request): bool
+    {
+        DB::beginTransaction();
+        try {
+            $this->update([
+                'name_ar' => $request->name_ar,
+                'name_en' => $request->name_en,
+            ]);
+            $this->syncRoles($request->roles);
+            DB::commit();
+            return true;
+        } catch (\Throwable $exception) {
+            DB::rollBack();
+            throw $exception;
+        }
+    }
+
+
 
     /**
      * Define search keys

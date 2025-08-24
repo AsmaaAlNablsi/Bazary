@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\MainControllers;
 
 
+use App\Http\Requests\categoryRequests\StoreCategoryRequest;
+use App\Http\Requests\categoryRequests\UpdateCategoryRequest;
 use App\Models\category;
-use App\Http\Requests\CategoryRequests\IndexCategoryRequest;
+use App\Http\Requests\categoryRequests\IndexCategoryRequest;
 use App\Http\Resources\CategoryResource;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -34,7 +36,7 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreCategoryRequest $request)
     {
         return self::jsonResponse('success', new CategoryResource(Category::add($request)));
     }
@@ -52,7 +54,7 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, category $category)
+    public function update(UpdateCategoryRequest $request, category $category)
     {
         $category->edit($request);
         return self::jsonResponse('success', $category);

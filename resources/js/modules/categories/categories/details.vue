@@ -33,7 +33,7 @@
             </v-col>
             <v-col>
                 <p>
-                    {{ itemData.name }}
+                    {{ itemData.name_en }}
                 </p>
             </v-col>
         </v-row>

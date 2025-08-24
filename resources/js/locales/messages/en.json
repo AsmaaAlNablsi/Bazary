@@ -187,6 +187,13 @@
         "please_select_permissions": "Please select permissions",
         "roles_selected": "Roles selected"
     },
+    "categories": {
+        "categories": "Categories",
+        "details": "Category details",
+        "edit": "Edit Category",
+        "add": "Add a new Category",
+    },
+
     "permissions": {
         "permissions": "Permissions",
         "permissions_selected": "Permissions selected"

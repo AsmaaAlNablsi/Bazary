@@ -186,6 +186,13 @@
         "please_select_permissions": "يرجى اختيار الصلاحيات",
         "roles_selected": "دور محدد"
     },
+
+    "categories": {
+        "categories":  "التصنيفات",
+        "details": "تفاصيل الصنف",
+        "edit": "تعديل الصنف",
+        "add": "إضافة صنف",
+    },
     "permissions": {
         "permissions": "الصلاحيات",
         "permissions_selected": "صلاحية محددة"

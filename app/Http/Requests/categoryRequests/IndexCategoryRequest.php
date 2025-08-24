@@ -4,7 +4,7 @@ namespace App\Http\Requests\categoryRequests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class IndexCategoryRequest extends FormRequest
+class IndexCategoryRequest extends IndexRequest
 {
     /**
      * Determine if the user is authorized to make this request.

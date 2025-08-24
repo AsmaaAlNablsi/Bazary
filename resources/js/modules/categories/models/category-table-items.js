@@ -1,7 +1,7 @@
 export default function categoryTableItems(deleteItem, redirect) {
 
     const cols = [
-        { header: 'Name EN', field: 'name_en', cell: (item) => item.name },
+        { header: 'Name EN', field: 'name_en', cell: (item) => item.name_en },
         { header: 'Name AR', field: 'name_ar', cell: (item) => item.name_ar }
     ];
 

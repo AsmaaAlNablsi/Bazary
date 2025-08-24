@@ -1,4 +1,3 @@
-import CategoriesManagementRoutes from "@/modules/categories/categories-management-routes";
 
 const categoryIndex = () => import("@/modules/categories/categories/index.vue");
 const categoryCreate = () => import("@/modules/categories/categories/create.vue");

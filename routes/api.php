@@ -44,7 +44,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
     /* ==================== Category ====================*/
-    Route::apiResource('/Categories', CategoryController::class);
+    Route::apiResource('/categories', CategoryController::class);
 
 
 

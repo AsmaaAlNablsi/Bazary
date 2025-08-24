@@ -23,8 +23,8 @@
                 :query="query"
                 :loading="isLoading"
                 :userPermissions="userPermissions"
-                :cols="roleCols"
-                :actions="roleActions"
+                :cols="categoryCols"
+                :actions="categoryActions"
                 @loadData="loadData"
                 :queryType="'LoadData'"
             >
@@ -47,9 +47,9 @@ const {
     loadData,
     deleteItem,
     router,
-    userPermissions,
-    roleCols,
-    roleActions
+    categoryCols,
+    categoryActions,
+    userPermissions
 } = useCategories()
 </script>
 
