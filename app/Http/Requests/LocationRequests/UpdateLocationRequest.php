@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\AddressRequests;
+namespace App\Http\Requests\LocationRequests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class StoreAddressRequest extends FormRequest
+class UpdateLocationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,15 +22,14 @@ class StoreAddressRequest extends FormRequest
      */
     public function rules(): array
     {
+        $data = $this->request->all();
         return [
-            'parent_id'   => 'sometimes|exists:addresses,id|integer',
-            'name_ar' => ['required', 'string' , 'max:100' ,
-                Rule::unique('addresses')->whereNull('deleted_at')
+            'name' => ['sometimes', 'string' , 'max:100' ,
+                Rule::unique('locations')->ignore($data['id'])->whereNull('deleted_at')
             ],
-            'name_en' => ['required', 'string' , 'max:100' ,
-                Rule::unique('addresses')->whereNull('deleted_at')
+            'code' => ['sometimes', 'string'  ,
+                Rule::unique('locations')->ignore($data['id'])->whereNull('deleted_at')
             ],
-            'is_active'   => 'sometimes|boolean',
         ];
     }
 }
